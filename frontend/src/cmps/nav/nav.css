@@ -1,0 +1,21 @@
+.nav-container {
+    width: 100%;
+    margin-top: 15px;
+    font-family: BerkshireSwash-Regular;
+}
+
+.nav-ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.nav-li {
+    font-size: 25px;
+    color: rgb(12, 24, 24);
+    transition: 0.3s;
+}
+
+.nav-li:hover {
+    color: rgb(64, 136, 136);
+}
