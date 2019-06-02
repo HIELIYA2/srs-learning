@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './assets/css/app.css';
 import Router from './RouterCmp';
 
@@ -25,10 +25,8 @@ class App extends React.Component<State> {
     render() {
         // let masage = this.state;
         console.log(this.state);
-
         return (
             <div className="home-page">
-                <h1 className="home-title">app page</h1>
                 {/* <h1 className="home-title">{this.state.masage}</h1> */}
                 <Router />;
             </div>
