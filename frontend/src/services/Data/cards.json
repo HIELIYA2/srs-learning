@@ -1,0 +1,26 @@
+[
+    {
+        "_id": 111,
+        "term": "hello",
+        "definition": "שלום",
+        "createdAt": 1559639881859,
+        "tags": ["english"],
+        "nextAppearance": 1559649881859
+    },
+    {
+        "_id": 112,
+        "term": "tal",
+        "definition": "טל",
+        "createdAt": 1559639881859,
+        "tags": ["english"],
+        "nextAppearance": 1559649881859
+    },
+    {
+        "_id": 113,
+        "term": "sun",
+        "definition": "שמש",
+        "createdAt": 1559639881859,
+        "tags": ["english"],
+        "nextAppearance": 1559649881859
+    }
+]

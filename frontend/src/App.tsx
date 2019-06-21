@@ -1,7 +1,6 @@
 import React from 'react';
-import './assets/css/app.css';
+import './css/app.css';
 import Router from './RouterCmp';
-
 const axios = require('axios');
 
 interface State {
