@@ -7,7 +7,7 @@ interface Props {}
 function card() {
     return (
         <div>
-            <h1>car}</h1>
+            <h1>card</h1>
             <div className="learn-page">{card}</div>
         </div>
     );
