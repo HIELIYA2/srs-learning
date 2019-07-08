@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addCard } from '../../actions';
+import './addCard.css';
 
 interface ICard {
     term: string;
     definition: string;
 }
-
 interface State {
     term: string;
     definition: string;
