@@ -10,8 +10,9 @@ export const addCard = card => ({
         .then(json => json.card),
 });
 
-// export const getCard = id => async dispatch => ({
-//    const response =  await .get(  `/card/${id}`);
-//    dispatch({type:GET_CARD,
-//   payload:response.DATA})
-// });
+export const getCards = () => ({
+    type: 'GET_CARDS',
+    payload: fetch(`/api/card`)
+        .then(response => response.json())
+        .then(json => json.card),
+});
