@@ -5,7 +5,12 @@ import { connect } from 'react-redux';
 interface Props {}
 
 function card() {
-    return <div className="learn-page">{card}</div>;
+    return (
+        <div>
+            <h1>card</h1>
+            <div className="learn-page">{card}</div>
+        </div>
+    );
 }
 
 const mapStateToProps = (state: { cards: any }, ownProps: any) => {

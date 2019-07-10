@@ -3,8 +3,8 @@ import './home.css';
 
 function Home() {
     return (
-        <div className="home-page">
-            <h1 className="home-title">Home page</h1>
+        <div>
+            <p className="home-paragraph">You can create new cards by pressing + button</p>
         </div>
     );
 }

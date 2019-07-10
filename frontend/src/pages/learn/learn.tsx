@@ -12,17 +12,17 @@ function Learn() {
     );
 }
 const mapStateToProps = (state: { cards: any }, ownProps: any) => {
-    // let id = ownProps.match.params.post_id;
+    let id = ownProps.match.params.post_id;
     return {
         cards: state.cards,
-        // card: state.cards.find((card: { id: any }) => card.id === id),
+        card: state.cards.find((card: { id: string }) => card.id === id),
     };
 };
 
-const mapDispatchToProps = (dispatch: (arg0: { type: string; id: any }) => void) => {
+const mapDispatchToProps = (dispatch: (arg0: { type: string; id: string }) => void) => {
     return {
-        deleteCard: (id: any) => {
-            dispatch({ type: 'delete_card', id: id });
+        deleteCard: (id: string) => {
+            dispatch({ type: 'DELETE_CARD', id });
         },
     };
 };

@@ -27,7 +27,7 @@ class App extends React.Component<State> {
         return (
             <div className="home-page">
                 {/* <h1 className="home-title">{this.state.masage}</h1> */}
-                <Router />;
+                <Router />
             </div>
         );
     }

@@ -1,12 +1,11 @@
 import React from 'react';
+import AddCard from '../../cmps/addCard/addCard';
 import './create.css';
 
-function Create() {
-    return (
-        <div className="create-page">
-            <h1 className="create-title">Create page</h1>
-        </div>
-    );
-}
+const Create = () => (
+    <div>
+        <AddCard />
+    </div>
+);
 
 export default Create;
