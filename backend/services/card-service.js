@@ -11,7 +11,6 @@ function query() {
 
 function remove(cardId) {
   cardId = new ObjectId(cardId);
-  console.log("cardId", cardId);
   return mongoService.connect().then(db => {
     const collection = db.collection(CARDS_DB);
     return collection.remove({ _id: cardId });
@@ -27,11 +26,9 @@ function getCardById(cardId) {
 }
 
 function addCard(card) {
-  console.log("card service add function");
   return mongoService.connect().then(db => {
     const collection = db.collection(CARDS_DB);
     return collection.insertOne(card).then(result => {
-      console.log("RESULT IS", result);
       card._id = result.insertedId;
       return card;
     });
