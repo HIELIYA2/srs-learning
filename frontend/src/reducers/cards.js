@@ -1,4 +1,4 @@
-import card from '../cmps/card/card';
+// import card from '../cmps/card/card';
 import cardService from '../services/cardService';
 
 const cards = (state = [], action) => {
