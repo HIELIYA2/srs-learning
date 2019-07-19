@@ -12,18 +12,17 @@ interface Props {
 const card: React.FC<Props> = ({ card }) => {
     return (
         <li>
-            <div className="learn-page">{card.term}</div>
-            <div className="learn-page">{card.definition}</div>
+            {console.log(card)}
+            <div className="term">Term: {card.term}</div>
+            <div className="definition">Definition: {card.definition}</div>
             <br />
         </li>
     );
 };
 
-const mapStateToProps = (state: { cards: any }, ownProps: any) => {
-    // let id = ownProps.match.params.post_id;
+const mapStateToProps = (state: { cards: any }) => {
     return {
         cards: state.cards,
-        // card: state.cards.find((card: { id: any }) => card.id === id),
     };
 };
 

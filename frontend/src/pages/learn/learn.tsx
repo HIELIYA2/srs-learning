@@ -2,57 +2,45 @@ import React, { Component } from 'react';
 import './learn.css';
 import Card from '../../cmps/card/card';
 import { connect } from 'react-redux';
-import { getCards } from '../../actions';
-// import cards from '../../reducers/cards';
+import { getCards } from '../../actions/cardsAction';
 
-interface ICards {}
-interface State {
-    cards: any;
-}
-interface Props {
-    onFetchData: (cards: ICards) => void;
+interface myProps {
+    cards: [];
+    getCards: any;
 }
 
-class Learn extends Component<Props, State> {
-    state = {
-        cards: [],
-    };
+interface myState {}
 
-    componentDidMount() {
-        let { cards } = this.state;
-        this.props.onFetchData({ cards });
+class Learn extends Component<myProps, myState> {
+    componentWillMount() {
+        this.props.getCards();
+        console.log(this.props);
     }
 
     render() {
-        const cards = this.state.cards;
-        let index = Math.floor(Math.random() * Math.floor(1000));
+        const cards = this.props.cards;
         return (
             <ul>
-                {console.log(cards)}
-                {cards.map(card => (
-                    <Card key={index} card={card} />
+                {cards.map((card: any) => (
+                    <Card key={card._id} card={card} />
                 ))}
             </ul>
         );
     }
 }
-const mapStateToProps = (state: { cards: any }, ownProps: any) => {
-    let id = ownProps.match.params.post_id;
-    return {
-        cards: state.cards,
-        card: state.cards.find((card: { id: string }) => card.id === id),
-    };
-};
+const mapStateToProps = (state: { cards: any }) => ({
+    cards: state.cards.cards,
+});
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        onFetchData: () => {
-            dispatch(getCards());
-        },
-    };
-};
+// const mapDispatchToProps = (dispatch: any) => {
+//     return {
+//         onFetchData: () => {
+//             dispatch(getCards());
+//         },
+//     };
+// };
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
+    { getCards },
 )(Learn);

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addCard } from '../../actions';
+import { addCard } from '../../actions/cardsAction';
 import './addCard.css';
 
 interface ICard {
     term: string;
     definition: string;
+    createAt: number;
+    tags: [];
+    nextAppearance: Number;
 }
 interface State {
     term: string;
@@ -25,7 +28,7 @@ class AddCard extends Component<Props, State> {
         e.preventDefault();
         let { term, definition } = this.state;
         if (!term.trim() || !definition.trim()) return;
-        this.props.onAddClick({ term, definition });
+        this.props.onAddClick({ term, definition, createAt: Date.now(), tags: [], nextAppearance: 0 });
         this.setState({
             term: '',
             definition: '',
@@ -62,7 +65,6 @@ class AddCard extends Component<Props, State> {
                         +
                     </button>
                 </form>
-                ;<p>{localStorage.getItem('card')}</p>
             </div>
         );
     }
