@@ -17,18 +17,18 @@ export default (state = initialState, action) => {
       return [
         ...state,
       ];
-    case DELETE_CARD:
-      cardService.removeCard(action.id);
-      console.log(action.id);
-      return [state.filter(({
-        id
-      }) => id !== action.id)];
     case GET_CARDS:
       console.log('redux');
       return {
         ...state,
         cards: action.payload,
       };
+    // case DELETE_CARD:
+    //   cardService.removeCard(action.id);
+    //   console.log(action.id);
+    //   return [state.filter(({
+    //     id
+    //   }) => id !== action.id)];
     default:
       return state;
   }
