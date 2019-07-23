@@ -13,7 +13,7 @@ function remove(cardId) {
   cardId = new ObjectId(cardId);
   return mongoService.connect().then(db => {
     const collection = db.collection(CARDS_DB);
-    return collection.remove({ _id: cardId });
+    return collection.deleteOne({ _id: cardId });
   });
 }
 
