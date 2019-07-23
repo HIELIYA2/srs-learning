@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addCard } from '../../actions/cardsAction';
-import './addCard.css';
+import './addCard.scss';
 
 interface ICard {
     term: string;
     definition: string;
     createAt: number;
     tags: [];
+    slot: [number];
     nextAppearance: Number;
 }
 interface State {
@@ -28,7 +29,14 @@ class AddCard extends Component<Props, State> {
         e.preventDefault();
         let { term, definition } = this.state;
         if (!term.trim() || !definition.trim()) return;
-        this.props.onAddClick({ term, definition, createAt: Date.now(), tags: [], nextAppearance: 0 });
+        this.props.onAddClick({
+            term,
+            definition,
+            createAt: Date.now(),
+            tags: [],
+            nextAppearance: Date.now(),
+            slot: [1],
+        });
         this.setState({
             term: '',
             definition: '',
@@ -46,23 +54,27 @@ class AddCard extends Component<Props, State> {
     render() {
         return (
             <div className="create-page">
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        type="term"
-                        placeholder="Enter front of the card"
-                        className="term-input"
-                        value={this.state.term}
-                        onChange={this.handleChangeTerm}
-                    />
-                    <input
-                        type="definition"
-                        placeholder="Enter back of the card"
-                        className="definition-input"
-                        value={this.state.definition}
-                        onChange={this.handleChangeDefinition}
-                    />
+                <form className="form-add-card" onSubmit={this.handleSubmit}>
+                    <div className="term">{this.state.term}</div>
+                    <div className="inputs">
+                        <input
+                            type="term"
+                            placeholder="Enter front of the card"
+                            className="term-input"
+                            value={this.state.term}
+                            onChange={this.handleChangeTerm}
+                            autoFocus={true}
+                        />
+                        <input
+                            type="definition"
+                            placeholder="Enter back of the card"
+                            className="definition-input"
+                            value={this.state.definition}
+                            onChange={this.handleChangeDefinition}
+                        />
+                    </div>
                     <button className="form-add-button" type="submit">
-                        +
+                        ✓
                     </button>
                 </form>
             </div>
