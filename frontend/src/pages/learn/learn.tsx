@@ -5,26 +5,38 @@ import { connect } from 'react-redux';
 import { getCards } from '../../actions/cardsAction';
 
 interface myProps {
-    cards: [];
-    getCards: any;
+    cards: [card];
+    getCards: Function;
 }
 
 interface myState {}
 
+interface card {
+    _id: string;
+    term: string;
+    definition: string;
+    createAt: number;
+    tags: [];
+    slot: number;
+    nextAppearance: number;
+}
+
 class Learn extends Component<myProps, myState> {
-    componentWillMount() {
+    componentDidMount() {
         this.props.getCards();
         console.log(this.props);
     }
 
     render() {
-        const cards = this.props.cards;
+        let cards = this.props.cards;
         return (
-            <ul>
-                {cards.map((card: any) => (
-                    <Card key={card._id} card={card} />
-                ))}
-            </ul>
+            <div>
+                <ul>
+                    {cards.map(card => (
+                        <div key={card._id}>{card.nextAppearance < Date.now() && <Card card={card} />}</div>
+                    ))}
+                </ul>
+            </div>
         );
     }
 }
