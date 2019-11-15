@@ -9,6 +9,17 @@ function query() {
   });
 }
 
+function getCardsByDate() {
+  return mongoService.connect().then(db =>
+    db
+      .collection(CARDS_DB)
+      .find({
+        nextAppearance: { $lt: Date.now() }
+      })
+      .toArray()
+  );
+}
+
 function remove(cardId) {
   cardId = new ObjectId(cardId);
   return mongoService.connect().then(db => {
@@ -49,8 +60,16 @@ function updateCard(card) {
 
 module.exports = {
   query,
+  getCardsByDate,
   remove,
   getCardById,
   addCard,
   updateCard
 };
+
+// .update({},
+// { nextAppearance: { $lt: Date.now() } },
+// { $inc: { cardInOrder: 1 } },
+// { $unset: { Review: 1 } },
+// { $set: { "cardInOrder": 1 } },
+// { multi: true })

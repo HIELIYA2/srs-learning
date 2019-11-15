@@ -8,6 +8,12 @@ function addCardRoutes(app) {
     cardService.query().then(cards => res.json(cards));
   });
 
+  // LIST BY DATE
+  app.get(`${CARD_URL}/learn`, (req, res) => {
+    cardService.getCardsByDate()
+      .then(cards => res.json(cards))
+  });
+
   // SINGLE - GET Full detail
   app.get(`${CARD_URL}/:cardId`, (req, res) => {
     const cardId = req.params.cardId;
@@ -31,7 +37,7 @@ function addCardRoutes(app) {
   // UPDATE
   app.put(`${CARD_URL}/:cardId`, (req, res) => {
     const card = req.body;
-    // delete card.users;
+    console.log("put req", card);
     cardService.updateCard(card).then(card => res.json(card));
   });
 }

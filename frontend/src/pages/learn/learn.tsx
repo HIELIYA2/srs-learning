@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import './learn.css';
 import Card from '../../cmps/card/card';
+import Loading from '../../cmps/loading/loading';
 import { connect } from 'react-redux';
-import { getCards } from '../../actions/cardsAction';
+import { getCardsToLearn } from '../../actions/cardsAction';
 
 interface myProps {
     cards: [card];
-    getCards: Function;
+    getCardsToLearn: Function;
 }
 
-interface myState {}
+interface myState {
+    index: number;
+    isLoading: boolean;
+}
 
 interface card {
     _id: string;
@@ -19,40 +23,48 @@ interface card {
     tags: [];
     slot: number;
     nextAppearance: number;
+    cardInOrder: number;
 }
 
 class Learn extends Component<myProps, myState> {
+    state = {
+        index: 0,
+        isLoading: true,
+    };
+    nextCard = () => {
+        let currentCard = this.state.index;
+        this.setState({
+            index: ++currentCard,
+        });
+        console.log('nextCard', currentCard);
+    };
     componentDidMount() {
-        this.props.getCards();
-        console.log(this.props);
+        this.props.getCardsToLearn();
     }
+
+    componentDidUpdate() {}
 
     render() {
         let cards = this.props.cards;
-        return (
-            <div>
-                <ul>
-                    {cards.map(card => (
-                        <div key={card._id}>{card.nextAppearance < Date.now() && <Card card={card} />}</div>
-                    ))}
-                </ul>
-            </div>
-        );
+        if (cards[0]) {
+            return (
+                <div>
+                    <ul>
+                        <div>
+                            {cards[this.state.index].nextAppearance < Date.now() && (
+                                <Card card={cards[this.state.index]} nextCard={this.nextCard} />
+                            )}
+                        </div>
+                    </ul>
+                </div>
+            );
+        } else {
+            return <Loading />;
+        }
     }
 }
 const mapStateToProps = (state: { cards: any }) => ({
     cards: state.cards.cards,
 });
 
-// const mapDispatchToProps = (dispatch: any) => {
-//     return {
-//         onFetchData: () => {
-//             dispatch(getCards());
-//         },
-//     };
-// };
-
-export default connect(
-    mapStateToProps,
-    { getCards },
-)(Learn);
+export default connect(mapStateToProps, { getCardsToLearn })(Learn);

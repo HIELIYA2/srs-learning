@@ -12,6 +12,7 @@ interface iCard {
 
 interface Props {
     card: iCard;
+    nextCard: () => void;
     onDeleteCard: (id: string) => void;
     onSuccess: (card: any) => void;
     onFailure: (card: any) => void;
@@ -25,22 +26,31 @@ class Card extends Component<Props, state> {
         activeDefinition: false,
     };
 
+    handleClick = () => {
+        this.props.nextCard();
+    };
+
+    addDays = (date: number, number: number) => {
+        return date + 1000 * 60 * 60 * 24 * number;
+    };
+
     success = (card: any) => {
         let oldSlot = JSON.stringify(card.slot.pop());
         card.slot.push(JSON.parse(oldSlot) + 1);
-        // card.nextAppearance = addDays(new Date(), Math.pow(2, +oldSlot)).getTime();
-        console.log(card.slot);
-        // this.props.onSuccess(card);
+        card.nextAppearance = this.addDays(Date.now(), Math.pow(2, +oldSlot));
+        this.props.onSuccess(card);
+        this.handleClick();
     };
     failure = (card: any) => {
         card.slot.push(1);
-        // card.nextAppearance = addDays(new Date(), 1).getTime();
-        console.log(card.slot);
-        // this.props.onFailure(card);
+        card.nextAppearance = this.addDays(Date.now(), 1);
+        this.props.onFailure(card);
+        this.handleClick();
     };
     deleteCard = (id: string) => {
         console.log('deleteCard', id);
         this.props.onDeleteCard(id);
+        this.handleClick();
     };
     tuggle = () => {
         const currentState = this.state.activeDefinition;
@@ -83,14 +93,13 @@ const mapStateToProps = (state: { cards: any }) => {
     };
 };
 
-// const mapDispatchToProps = (dispatch: (arg0: { type: string; id: string }) => void) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         onDeleteCard: (id: string) => {
             dispatch(deleteCard(id));
         },
         onSuccess: (card: any) => {
-            console.log(card);
+            console.log('onSuccess', card);
             dispatch(updateCard(card));
         },
         onFailure: (card: any) => {
@@ -100,7 +109,4 @@ const mapDispatchToProps = (dispatch: any) => {
     };
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Card);
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

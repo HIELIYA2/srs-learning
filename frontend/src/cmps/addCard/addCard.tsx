@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import reactComponents from 'react-components';
 import { connect } from 'react-redux';
 import { addCard } from '../../actions/cardsAction';
 import './addCard.scss';
@@ -10,6 +11,7 @@ interface ICard {
     tags: [];
     slot: [number];
     nextAppearance: Number;
+    cardInOrder: number;
 }
 interface State {
     term: string;
@@ -34,8 +36,9 @@ class AddCard extends Component<Props, State> {
             definition,
             createAt: Date.now(),
             tags: [],
-            nextAppearance: Date.now(),
+            nextAppearance: Date.now() + 86400000,
             slot: [1],
+            cardInOrder: 0,
         });
         this.setState({
             term: '',
@@ -55,7 +58,7 @@ class AddCard extends Component<Props, State> {
         return (
             <div className="create-page">
                 <form className="form-add-card" onSubmit={this.handleSubmit}>
-                    <div className="term">{this.state.term}</div>
+                    {/* <div className="term">{this.state.term}</div> */}
                     <div className="inputs">
                         <input
                             type="term"
@@ -77,6 +80,7 @@ class AddCard extends Component<Props, State> {
                         ✓
                     </button>
                 </form>
+                {/* <reactComponents /> */}
             </div>
         );
     }
@@ -90,7 +94,4 @@ const mapDispatchToProps = (dispatch: any) => {
     };
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(AddCard);
+export default connect(null, mapDispatchToProps)(AddCard);
