@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './learn.css';
-import Card from '../../cmps/card/card';
+import Board from '../../cmps/board/board';
 import Loading from '../../cmps/loading/loading';
 import { connect } from 'react-redux';
 import { getCardsToLearn } from '../../actions/cardsAction';
@@ -52,7 +52,7 @@ class Learn extends Component<myProps, myState> {
                     <ul>
                         <div>
                             {cards[this.state.index].nextAppearance < Date.now() && (
-                                <Card card={cards[this.state.index]} nextCard={this.nextCard} />
+                                <Board card={cards[this.state.index]} nextCard={this.nextCard} />
                             )}
                         </div>
                     </ul>

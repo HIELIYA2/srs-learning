@@ -3,6 +3,7 @@ const CARD_URL = getUrl('card');
 const resolveData = (res: { data: any }) => res.data;
 
 function addCard(card: any) {
+    console.log('addCard', card);
     return Axios.create({ withCredentials: true })
         .post(CARD_URL, card)
         .then(resolveData);
@@ -26,7 +27,8 @@ function removeCard(cardId: string) {
         .then(resolveData);
 }
 
-function updateCard(card: { _id: any }) {
+function updateCard(card: { _id: string }) {
+    console.log('updateCard', card, card._id);
     return Axios.create({ withCredentials: true })
         .put(`${CARD_URL}/${card._id}`)
         .then(resolveData);

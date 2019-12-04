@@ -20,7 +20,7 @@ export const updateCard = card => ({
     method: 'put',
     type: UPDATE_CARD,
     card,
-    payload: fetch(`http://localhost:3000/api/card/${card._id}`)
+    payload: fetch(`/api/card/${card._id}`)
         .then(response => response.json())
         .then(json => json.card),
 });

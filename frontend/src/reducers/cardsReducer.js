@@ -10,6 +10,7 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_CARD:
             cardService.addCard(action.card);
+            console.log('ADD_CARD', action, state);
             return {
                 ...state,
             };
