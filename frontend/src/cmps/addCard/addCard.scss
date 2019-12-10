@@ -1,0 +1,42 @@
+.term {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.inputs {
+    margin: 10px 0 0;
+    height: calc(100vh - 186px);
+}
+
+.term-input,
+.definition-input {
+    width: 100vw;
+    height: 10vh;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    text-align: center;
+}
+.term-input::placeholder,
+.definition-input::placeholder {
+    text-align: center;
+}
+
+.form-add-button {
+    font-size: 30px;
+    background-color: rgb(15, 177, 189);
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-add-button:hover {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+}

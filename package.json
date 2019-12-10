@@ -1,7 +1,7 @@
 {
   "name": "borsood-v2",
   "version": "1.0.0",
-  "description": "For any question feel free to contact us",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/saracodes/borsood-v2.git"
   },
-  "author": "",
+  "author": "Eliyahu hillel",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/saracodes/borsood-v2/issues"
