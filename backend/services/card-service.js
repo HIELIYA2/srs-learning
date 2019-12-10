@@ -50,14 +50,13 @@ function addCard(card) {
 
 function updateCard(card) {
   console.log("updateCard", card);
+  const cardId = card._id;
   card._id = new ObjectId(card._id);
   return mongoService.connect().then(db => {
     const collection = db.collection(CARDS_DB);
-    return collection
-      .updateOne({ _id: card._id }, { $set: card })
-      .then(result => {
-        return card;
-      });
+    return collection.updateOne({ _id: card._id }, { $set: card }).then(() => {
+      return getCardById(cardId);
+    });
   });
 }
 
@@ -69,10 +68,3 @@ module.exports = {
   addCard,
   updateCard
 };
-
-// .update({},
-// { nextAppearance: { $lt: Date.now() } },
-// { $inc: { cardInOrder: 1 } },
-// { $unset: { Review: 1 } },
-// { $set: { "cardInOrder": 1 } },
-// { multi: true })
