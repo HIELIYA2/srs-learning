@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_CARD:
             cardService.addCard(action.card);
-            console.log('ADD_CARD', action, state);
+            console.log('ADD_CARD_CR', action, state);
             return {
                 ...state,
             };
@@ -28,9 +28,11 @@ export default (state = initialState, action) => {
             cardService.removeCard(action.id);
             return state.cards.filter(({ id }) => id !== action.id);
         case UPDATE_CARD:
-            cardService.updateCard(action.card);
-            console.log('UPDATE_CARD', action, state);
-            return state;
+            // cardService.updateCard(action.card);
+            console.log('UPDATE_CARD_CR', action, state);
+            return {
+                ...state,
+            };
         default:
             return state;
     }

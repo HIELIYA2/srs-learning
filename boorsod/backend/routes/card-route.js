@@ -10,8 +10,7 @@ function addCardRoutes(app) {
 
   // LIST BY DATE
   app.get(`${CARD_URL}/learn`, (req, res) => {
-    cardService.getCardsByDate()
-      .then(cards => res.json(cards))
+    cardService.getCardsByDate().then(cards => res.json(cards));
   });
 
   // SINGLE - GET Full detail

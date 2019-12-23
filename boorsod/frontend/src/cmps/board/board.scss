@@ -5,6 +5,9 @@
     height: calc(100vh - 80px);
     cursor: pointer;
     .flip-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 85vw;
         height: 65vh;
         perspective: 1000px;
@@ -12,39 +15,48 @@
             transform: rotateY(180deg);
         }
         .card {
+            font-size: 40px;
             position: relative;
-            width: 100%;
-            height: 100%;
+            width: 50%;
+            min-width: 250px;
+            height: 70%;
+            min-height: 300px;
             text-align: center;
             transition: transform 0.6s;
             transform-style: preserve-3d;
             cursor: pointer;
             .card-face {
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 position: absolute;
                 width: 100%;
                 height: 100%;
                 backface-visibility: hidden;
+                border-radius: 30px;
             }
             .flip-card-back {
                 background-color: rgb(15, 177, 189);
                 color: white;
             }
             .flip-card-front {
-                background-color: rgb(255, 255, 255);
+                background-color: rgb(219, 219, 219);
                 color: rgb(15, 177, 189);
                 transform: rotateY(180deg);
             }
         }
     }
-
     .select-menu {
-        background-color: rgb(15, 177, 189);
-        width: 100%;
+        background-color: rgb(255, 255, 255);
+        min-width: 250px;
+        width: auto;
         height: 15vh;
         display: flex;
         justify-self: flex-end;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
+        border-radius: 50px;
+        border: 5px solid rgb(15, 177, 189);
         .un-like-button {
             transform: rotate(180deg);
         }
@@ -57,6 +69,8 @@
         .like,
         .un-like,
         .delete-button {
+            color: rgb(15, 177, 189);
+            fill: rgb(15, 177, 189);
             width: 30px;
             height: 30px;
             font-size: 30px;
@@ -65,15 +79,15 @@
             transition: 0.3s;
         }
         :hover {
-            color: rgb(240, 52, 52);
+            color: rgb(0, 0, 0);
         }
         .like :hover {
-            fill: rgb(107, 226, 152);
+            fill: rgb(0, 0, 0);
             transition: 0.3s;
         }
         .un-like :hover {
             transition: 0.3s;
-            fill: rgb(243, 111, 101);
+            fill: rgb(0, 0, 0);
         }
     }
 }

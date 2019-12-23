@@ -61,6 +61,7 @@ class AddCard extends Component<Props, State> {
                     {/* <div className="term">{this.state.term}</div> */}
                     <div className="inputs">
                         <input
+                            name="textarea"
                             type="term"
                             placeholder="Enter front of the card"
                             className="term-input"
@@ -89,6 +90,7 @@ class AddCard extends Component<Props, State> {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         onAddClick: (card: any) => {
+            console.log('dispatch:', card);
             dispatch(addCard(card));
         },
     };

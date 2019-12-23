@@ -38,7 +38,7 @@ function getCardById(cardId) {
 }
 
 function addCard(card) {
-  console.log("addCard", card);
+  console.log("addCard", card );
   return mongoService.connect().then(db => {
     const collection = db.collection(CARDS_DB);
     return collection.insertOne(card).then(result => {

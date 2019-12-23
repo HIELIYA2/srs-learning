@@ -28,10 +28,10 @@ function removeCard(cardId: string) {
 }
 
 function updateCard(card: { _id: string }) {
-    console.log('updateCard', card, card._id);
-    return Axios.create({ withCredentials: true })
-        .put(`${CARD_URL}/${card._id}`)
-        .then(resolveData);
+    // console.log('updateCard_CS', card, );
+    // return Axios.create({ withCredentials: true })
+    //     .put(`${CARD_URL}/${card._id}`)
+    //     .then(resolveData);
 }
 
 function getUrl(entityName: string) {

@@ -45,14 +45,17 @@ class Learn extends Component<myProps, myState> {
     componentDidUpdate() {}
 
     render() {
-        let cards = this.props.cards;
+        //  TODO: get only relevant cards from BE
+        const { index } = this.state;
+        const { cards } = this.props;
         if (cards[0]) {
             return (
                 <div>
                     <ul>
                         <div>
-                            {cards[this.state.index].nextAppearance < Date.now() && (
-                                <Board card={cards[this.state.index]} nextCard={this.nextCard} />
+                            {cards[index] && cards[index].nextAppearance < Date.now() && (
+                                //TODO: getNextCard (function is verb)
+                                <Board card={cards[index]} nextCard={this.nextCard} />
                             )}
                         </div>
                     </ul>
