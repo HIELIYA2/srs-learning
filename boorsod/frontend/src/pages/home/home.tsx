@@ -4,7 +4,7 @@ import './home.css';
 function Home() {
     return (
         <div>
-            <p className="home-paragraph">You can create new cards by pressing + button</p>
+            <h1>You can create new cards by pressing + button</h1>
         </div>
     );
 }

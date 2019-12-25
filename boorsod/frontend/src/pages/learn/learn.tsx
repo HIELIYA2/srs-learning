@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './learn.css';
+import './learn.scss';
 import Board from '../../cmps/board/board';
 import Loading from '../../cmps/loading/loading';
 import { connect } from 'react-redux';
@@ -42,8 +42,6 @@ class Learn extends Component<myProps, myState> {
         this.props.getCardsToLearn();
     }
 
-    componentDidUpdate() {}
-
     render() {
         //  TODO: get only relevant cards from BE
         const { index } = this.state;
@@ -62,7 +60,11 @@ class Learn extends Component<myProps, myState> {
                 </div>
             );
         } else {
-            return <Loading />;
+            if (cards) {
+                return <h1>There are no terms to learn today</h1>;
+            } else {
+                return <Loading />;
+            }
         }
     }
 }
