@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './board.scss';
-// import Card from '../card/card';
 import { connect } from 'react-redux';
 import { deleteCard, updateCard } from '../../actions/cardsAction';
 
@@ -13,7 +12,7 @@ interface iCard {
 
 interface Props {
     card: iCard;
-    nextCard: () => void;
+    getNextCard: () => void;
     onDeleteCard: (id: string) => void;
     onSuccess: (card: any) => void;
     onFailure: (card: any) => void;
@@ -31,7 +30,7 @@ class Board extends Component<Props, state> {
         this.setState({
             activeDefinition: false,
         });
-        this.props.nextCard();
+        this.props.getNextCard();
     };
 
     addDays = (date: number, number: number) => {

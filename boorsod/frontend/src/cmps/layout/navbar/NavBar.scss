@@ -1,0 +1,53 @@
+.user-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: white;
+    box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.58);
+    .user-conected-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .sign-out-button {
+            font-weight: bold;
+            font-size: 20px;
+            color: rgb(15, 177, 189);
+            transition: 0.3s;
+            margin: 0 10px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            cursor: pointer;
+        }
+        .sign-out-button:hover {
+            color: rgb(2, 30, 32);
+        }
+        .nav-add-card {
+            font-weight: bold;
+            font-size: 35px;
+            color: rgb(15, 177, 189);
+            transition: 0.3s;
+            margin: 0 10px;
+        }
+        .nav-add-card:hover {
+            color: rgb(2, 30, 32);
+        }
+    }
+    .user-unconected-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .login-button {
+            font-weight: bold;
+            font-size: 20px;
+            color: rgb(15, 177, 189);
+            transition: 0.3s;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        .login-button:hover {
+            color: rgb(2, 30, 32);
+        }
+    }
+}

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-// import reactComponents from 'react-components';
 import { connect } from 'react-redux';
 import { addCard } from '../../actions/cardsAction';
 import './addCard.scss';
+import firebase from '../../firebase';
+import 'firebase/auth';
 
 interface ICard {
     term: string;
@@ -12,6 +13,7 @@ interface ICard {
     slot: [number];
     nextAppearance: Number;
     cardInOrder: number;
+    // uid: any;
 }
 interface State {
     term: string;
@@ -27,6 +29,12 @@ class AddCard extends Component<Props, State> {
         definition: '',
     };
 
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(user => {
+            console.log('user', user);
+        });
+    }
+
     handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
         let { term, definition } = this.state;
@@ -39,6 +47,7 @@ class AddCard extends Component<Props, State> {
             nextAppearance: Date.now() + 86400000,
             slot: [1],
             cardInOrder: 0,
+            // uid: firebase.auth().currentUser?.uid,
         });
         this.setState({
             term: '',
@@ -58,7 +67,6 @@ class AddCard extends Component<Props, State> {
         return (
             <div className="create-page">
                 <form className="form-add-card" onSubmit={this.handleSubmit}>
-                    {/* <div className="term">{this.state.term}</div> */}
                     <div className="inputs">
                         <input
                             name="textarea"
@@ -81,7 +89,6 @@ class AddCard extends Component<Props, State> {
                         ✓
                     </button>
                 </form>
-                {/* <reactComponents /> */}
             </div>
         );
     }

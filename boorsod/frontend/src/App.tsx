@@ -1,30 +1,40 @@
 import React from 'react';
 import './css/app.css';
 import Router from './RouterCmp';
-const axios = require('axios');
+import firebase from './firebase';
+import 'firebase/auth';
+// const axios = require('axios');
 
-interface State {
-    masage: string;
+interface state {
+    // masage: string;
+    isSignedIn: boolean;
 }
 
-class App extends React.Component<State> {
-    constructor(Props: Readonly<State>) {
-        super(Props);
-        this.state = {
-            masage: '',
-        };
-    }
+class App extends React.Component<state> {
+    state = {
+        isSignedIn: false,
+    };
+
     componentDidMount() {
-        axios.get('http://localhost:3000').then((res: any) => {
-            console.log(res);
-            this.setState({ masage: res.data });
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                // User is signed in.
+                console.log('good', user.uid);
+                console.log('good', user.displayName);
+                console.log('good', user.photoURL);
+                this.setState({ isSignedIn: true });
+            } else {
+                console.log('not good');
+                this.setState({ isSignedIn: false });
+            }
         });
     }
 
     render() {
+        const { isSignedIn } = this.state;
         return (
             <div className="home-page">
-                <Router />
+                <Router isSignedIn={isSignedIn} />
             </div>
         );
     }

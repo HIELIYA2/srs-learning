@@ -31,7 +31,7 @@ class Learn extends Component<myProps, myState> {
         index: 0,
         isLoading: true,
     };
-    nextCard = () => {
+    getNextCard = () => {
         let currentCard = this.state.index;
         this.setState({
             index: ++currentCard,
@@ -53,7 +53,7 @@ class Learn extends Component<myProps, myState> {
                         <div>
                             {cards[index] && cards[index].nextAppearance < Date.now() && (
                                 //TODO: getNextCard (function is verb)
-                                <Board card={cards[index]} nextCard={this.nextCard} />
+                                <Board card={cards[index]} getNextCard={this.getNextCard} />
                             )}
                         </div>
                     </ul>
