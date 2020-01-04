@@ -18,7 +18,7 @@ class Nav extends React.Component<IProps> {
                     <div className="user-buttons">
                         <SingInLinks />
                         <div className="user-conected-buttons">
-                            <button className="sign-out-button" onClick={firebase.auth().signOut}>
+                            <button className="sign-out-button" onClick={() => firebase.auth().signOut()}>
                                 sign out
                             </button>
                             <Link to="/create">

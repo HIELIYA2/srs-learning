@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addCard } from '../../actions/cardsAction';
 import './addCard.scss';
-import firebase from '../../firebase';
-import 'firebase/auth';
 
 interface ICard {
     term: string;
@@ -13,13 +11,22 @@ interface ICard {
     slot: [number];
     nextAppearance: Number;
     cardInOrder: number;
-    // uid: any;
+    uid: String;
+}
+interface IUser {
+    phutoUrl: string | null;
+    name: string | null;
+    uid: String;
+}
+interface UUser {
+    user: IUser;
 }
 interface State {
     term: string;
     definition: string;
 }
 interface Props {
+    user: UUser;
     onAddClick: (card: ICard) => void;
 }
 
@@ -29,15 +36,9 @@ class AddCard extends Component<Props, State> {
         definition: '',
     };
 
-    componentDidMount() {
-        firebase.auth().onAuthStateChanged(user => {
-            console.log('user', user);
-        });
-    }
-
     handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        let { term, definition } = this.state;
+        const { term, definition } = this.state;
         if (!term.trim() || !definition.trim()) return;
         this.props.onAddClick({
             term,
@@ -47,7 +48,7 @@ class AddCard extends Component<Props, State> {
             nextAppearance: Date.now() + 86400000,
             slot: [1],
             cardInOrder: 0,
-            // uid: firebase.auth().currentUser?.uid,
+            uid: this.props.user.user.uid,
         });
         this.setState({
             term: '',
@@ -94,13 +95,16 @@ class AddCard extends Component<Props, State> {
     }
 }
 
+const mapStateToProps = (state: { user: any }) => {
+    return { user: state.user };
+};
+
 const mapDispatchToProps = (dispatch: any) => {
     return {
         onAddClick: (card: any) => {
-            console.log('dispatch:', card);
             dispatch(addCard(card));
         },
     };
 };
 
-export default connect(null, mapDispatchToProps)(AddCard);
+export default connect(mapStateToProps, mapDispatchToProps)(AddCard);

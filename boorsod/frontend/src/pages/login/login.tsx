@@ -22,8 +22,11 @@ class Login extends React.Component<state> {
 
     componentDidMount() {
         firebase.auth().onAuthStateChanged(user => {
-            this.setState({ isSignedIn: !!user });
-            console.log('user', user);
+            if (user) {
+                this.setState({ isSignedIn: true });
+            } else {
+                this.setState({ isSignedIn: false });
+            }
         });
     }
 
@@ -32,10 +35,7 @@ class Login extends React.Component<state> {
             <div className="login-page">
                 {this.state.isSignedIn ? (
                     <span>
-                        <h1>sing in</h1>
-                        <button onClick={() => firebase.auth().signOut()}>sign out</button>
-                        {/* <h1>WELCOME {this.state.currentUser}</h1> */}
-                        {/* <img src={firebase.auth().currentUser?.photoURL} alt="profile picture" /> */}
+                        <h1>login sucsess</h1>{' '}
                     </span>
                 ) : (
                     <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />

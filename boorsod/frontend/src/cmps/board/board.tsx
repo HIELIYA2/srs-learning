@@ -39,11 +39,8 @@ class Board extends Component<Props, state> {
 
     success = (card: any) => {
         let oldSlot = JSON.stringify(card.slot.pop());
-        console.log('card.nextAppearance', card.nextAppearance);
         card.slot.push(JSON.parse(oldSlot) + 1);
         card.nextAppearance = this.addDays(Date.now(), Math.pow(2, +oldSlot));
-        console.log('card.nextAppearance', card.nextAppearance);
-
         this.props.onSuccess(card);
         this.handleClick();
     };
@@ -54,7 +51,6 @@ class Board extends Component<Props, state> {
         this.handleClick();
     };
     deleteCard = (id: string) => {
-        console.log('deleteCard', id);
         this.props.onDeleteCard(id);
         this.handleClick();
     };

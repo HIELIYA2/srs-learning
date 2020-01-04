@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 
 const addCardRoutes = require("./routes/card-route");
+const addUserRoutes = require("./routes/user-route");
 
 const app = express();
 let server = require("http").Server(app);
@@ -36,3 +37,4 @@ server.listen(port, () => {
 });
 
 addCardRoutes(app);
+addUserRoutes(app);

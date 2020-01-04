@@ -1,0 +1,47 @@
+import Axios from 'axios';
+const CARD_URL = getUrl('user');
+const resolveData = (res: { data: any }) => res.data;
+
+function addUser(user: any) {
+    console.log('add  user:', user);
+    return Axios.create({ withCredentials: true })
+        .post(CARD_URL, user)
+        .then(resolveData);
+}
+
+// function query() {
+//     return Axios.create({ withCredentials: true })
+//         .get(CARD_URL)
+//         .then(resolveData);
+// }
+
+// function getCardById(cardId: string) {
+//     return Axios.create({ withCredentials: true })
+//         .get(`${CARD_URL}/${cardId}`)
+//         .then(resolveData);
+// }
+
+// function removeCard(cardId: string) {
+//     return Axios.create({ withCredentials: true })
+//         .delete(`${CARD_URL}/${cardId}`)
+//         .then(resolveData);
+// }
+
+// function updateCard(card: { _id: string }) {
+// console.log('updateCard_CS', card, );
+// return Axios.create({ withCredentials: true })
+//     .put(`${CARD_URL}/${card._id}`)
+//     .then(resolveData);
+// }
+
+function getUrl(entityName: string) {
+    return process.env.NODE_ENV !== 'development' ? `/api/${entityName}` : `//localhost:3000/api/${entityName}`;
+}
+
+export default {
+    // query,
+    // getCardById,
+    // removeCard,
+    addUser,
+    // updateCard,
+};

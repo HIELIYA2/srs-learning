@@ -52,7 +52,6 @@ class Learn extends Component<myProps, myState> {
                     <ul>
                         <div>
                             {cards[index] && cards[index].nextAppearance < Date.now() && (
-                                //TODO: getNextCard (function is verb)
                                 <Board card={cards[index]} getNextCard={this.getNextCard} />
                             )}
                         </div>

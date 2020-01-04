@@ -18,23 +18,9 @@ export const deleteCard = id => ({
 });
 
 export const updateCard = card => async dispatch => {
-    console.log('update card', card);
-
     const response = await Streams.put(`/api/card/${card._id}`, card);
     dispatch({ type: UPDATE_CARD, payload: response.data });
 };
-
-// export const updateCard = card => ({
-//     method: 'PUT',
-//     type: UPDATE_CARD,
-//     card,
-//     payload: fetch(`/api/card/${card._id}`)
-//         .then(response => response.json())
-//         .then(json => json.card)
-//         .catch(err => {
-//             console.log('Error', err);
-//         }),
-// });
 
 export const getCards = () => dispatch => {
     fetch('http://localhost:3000/api/card')
