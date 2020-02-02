@@ -1,5 +1,5 @@
 const userService = require("../services/user-service");
-const USER_URL = "/api/user";
+const USER_URL = "/api/users";
 function addUserRoutes(app) {
   // users REST API:
 
@@ -8,11 +8,18 @@ function addUserRoutes(app) {
     userService.query().then(users => res.json(users));
   });
 
+  // LIST BY DATE
+  app.get(`${USER_URL}/cards/:userId`, (req, res) => {
+    const userId = req.params.userId;
+    console.log("LIST BY DATE userId ", userId);
+    userService.getCardsByID(userId).then(cards => res.json(cards));
+  });
+
   // SINGLE - GET Full detail
   app.get(`${USER_URL}/:userId`, (req, res) => {
     const userId = req.params.userId;
-    console.log("cardId", userId);
-    userService.getUserById(userId).then(user => res.json(user));
+    console.log("userId", userId);
+    userService.getCardsByID(userId).then(user => res.json(user));
   });
 
   // DELETE
@@ -22,10 +29,10 @@ function addUserRoutes(app) {
     userService.remove(userId).then(() => res.end(`user ${userId} Deleted `));
   });
 
-  // CREATE
+  // LOGIN
   app.post(USER_URL, (req, res) => {
     const user = req.body;
-    userService.addUser(user).then(user => res.json(user));
+    userService.login(user).then(user => res.json(user));
   });
 
   // UPDATE

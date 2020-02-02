@@ -1,4 +1,5 @@
 const mongoService = require("./mongo-service");
+const userService = require("./user-service");
 const CARDS_DB = "cards";
 const ObjectId = require("mongodb").ObjectId;
 
@@ -25,11 +26,13 @@ function remove(cardId) {
   cardId = new ObjectId(cardId);
   return mongoService.connect().then(db => {
     const collection = db.collection(CARDS_DB);
-    return collection.deleteOne({ _id: cardId });
+    // return collection.deleteOne({ _id: cardId });
+    return collection.updateOne({ _id: cardId }, { $set: { isDeleted: true } });
   });
 }
 
 function getCardById(cardId) {
+  console.log("getCardById cardId:", cardId);
   cardId = new ObjectId(cardId);
   return mongoService.connect().then(db => {
     const collection = db.collection(CARDS_DB);
@@ -38,11 +41,12 @@ function getCardById(cardId) {
 }
 
 function addCard(card) {
-  console.log("addCard", card );
+  console.log("addCard", card);
   return mongoService.connect().then(db => {
     const collection = db.collection(CARDS_DB);
     return collection.insertOne(card).then(result => {
       card._id = result.insertedId;
+      userService.addCardID(card, card._id);
       return card;
     });
   });
@@ -55,7 +59,7 @@ function updateCard(card) {
   return mongoService.connect().then(db => {
     const collection = db.collection(CARDS_DB);
     return collection.updateOne({ _id: card._id }, { $set: card }).then(() => {
-      return getCardById(cardId);
+      return cardId;
     });
   });
 }

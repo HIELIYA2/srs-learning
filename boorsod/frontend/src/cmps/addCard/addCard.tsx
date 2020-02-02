@@ -10,13 +10,15 @@ interface ICard {
     tags: [];
     slot: [number];
     nextAppearance: Number;
-    cardInOrder: number;
-    uid: String;
+    isDeleted: boolean;
+    uid: string | null;
 }
 interface IUser {
+    _id: string | null;
     phutoUrl: string | null;
     name: string | null;
-    uid: String;
+    uid: string | null;
+    cards: any;
 }
 interface UUser {
     user: IUser;
@@ -47,7 +49,7 @@ class AddCard extends Component<Props, State> {
             tags: [],
             nextAppearance: Date.now() + 86400000,
             slot: [1],
-            cardInOrder: 0,
+            isDeleted: false,
             uid: this.props.user.user.uid,
         });
         this.setState({
@@ -57,6 +59,8 @@ class AddCard extends Component<Props, State> {
     };
 
     handleChangeTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(this.props.user.user);
+
         this.setState({ term: e.target.value });
     };
 

@@ -3,13 +3,17 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 15px 0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: Raleway-Regular, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: white;
     box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.58);
     .user-conected-buttons {
         display: flex;
         justify-content: center;
         align-items: center;
+        .img-profile {
+            height: 30px;
+            border-radius: 50%;
+        }
         .sign-out-button {
             font-weight: bold;
             font-size: 20px;

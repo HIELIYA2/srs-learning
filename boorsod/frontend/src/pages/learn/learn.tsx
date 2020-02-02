@@ -7,6 +7,7 @@ import { getCardsToLearn } from '../../actions/cardsAction';
 
 interface myProps {
     cards: [card];
+    user: [user];
     getCardsToLearn: Function;
 }
 
@@ -15,15 +16,23 @@ interface myState {
     isLoading: boolean;
 }
 
+interface user {
+    _id: string | null;
+    phutoUrl: string | null;
+    name: string | null;
+    uid: string | null;
+    cards: any;
+}
+
 interface card {
     _id: string;
     term: string;
     definition: string;
     createAt: number;
     tags: [];
-    slot: number;
     nextAppearance: number;
-    cardInOrder: number;
+    slot: number;
+    uid: string;
 }
 
 class Learn extends Component<myProps, myState> {
@@ -39,27 +48,30 @@ class Learn extends Component<myProps, myState> {
         console.log('nextCard', currentCard);
     };
     componentDidMount() {
-        this.props.getCardsToLearn();
+        console.log('learn componentDidMount :', this.props.user);
+        this.props.getCardsToLearn(this.props.user);
     }
 
     render() {
-        //  TODO: get only relevant cards from BE
         const { index } = this.state;
         const { cards } = this.props;
-        if (cards[0]) {
+        const filtered = cards.filter(function(e) {
+            return e;
+        });
+        if (filtered[index]) {
             return (
                 <div>
                     <ul>
                         <div>
-                            {cards[index] && cards[index].nextAppearance < Date.now() && (
-                                <Board card={cards[index]} getNextCard={this.getNextCard} />
+                            {filtered[index] && filtered[index].nextAppearance < Date.now() && (
+                                <Board card={filtered[index]} getNextCard={this.getNextCard} />
                             )}
                         </div>
                     </ul>
                 </div>
             );
         } else {
-            if (cards) {
+            if (filtered) {
                 return <h1>There are no terms to learn today</h1>;
             } else {
                 return <Loading />;
@@ -67,8 +79,9 @@ class Learn extends Component<myProps, myState> {
         }
     }
 }
-const mapStateToProps = (state: { cards: any }) => ({
+const mapStateToProps = (state: { cards: any; user: any }) => ({
     cards: state.cards.cards,
+    user: state.user,
 });
 
 export default connect(mapStateToProps, { getCardsToLearn })(Learn);

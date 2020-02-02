@@ -1,23 +1,15 @@
-import { GET_USER, ADD_USER } from '../actions/types';
-import userService from '../services/userService';
+import { GET_USER, LOGIN } from '../actions/types';
 
 const initialState = {
-    user: {
-        phutoUrl: '',
-        name: '',
-        uid: '',
-        cardsID: [],
-    },
+    user: {},
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case ADD_USER:
-            userService.addUser(action.user);
-            console.log('ADD_USER_CR', action, state);
+        case LOGIN:
             return {
                 ...state,
-                user: action.user,
+                user: action.payload,
             };
         case GET_USER:
             return {

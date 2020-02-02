@@ -9,10 +9,9 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_CARD:
-            cardService.addCard(action.card);
-            console.log('ADD_CARD_CR', action, state);
             return {
                 ...state,
+                card: action.payload,
             };
         case GET_CARDS:
             return {
@@ -26,9 +25,9 @@ export default (state = initialState, action) => {
             };
         case DELETE_CARD:
             cardService.removeCard(action.id);
-            return state.cards.filter(({ id }) => id !== action.id);
+            // return state.cards.filter(({ id }) => id !== action.id);
+            return { ...state };
         case UPDATE_CARD:
-            console.log('UPDATE_CARD_CR', action, state);
             return {
                 ...state,
             };

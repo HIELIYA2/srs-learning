@@ -1,0 +1,46 @@
+h1 {
+    width: 100vw;
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}
+
+.head {
+    width: 100%;
+    .home-visual {
+        margin-top: 3px;
+        width: 90vw;
+        mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 30%, rgba(255, 255, 255, 0) 80%);
+    }
+    .home-h {
+        font-family: IndieFlower-Regular;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 40vh;
+        left: 60vw;
+        font-size: 60px;
+        z-index: 1;
+        font-weight: bold;
+
+        .home-h1 {
+            margin-bottom: 40px;
+        }
+        .home-h2 {
+            margin-bottom: 40px;
+        }
+        .home-memory {
+            display: flex;
+            margin-bottom: 40px;
+            .home-h3 {
+            }
+            .home-point {
+                margin-left: 5px;
+                color: rgb(15, 177, 189);
+            }
+        }
+    }
+}

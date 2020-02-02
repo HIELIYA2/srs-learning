@@ -101,15 +101,12 @@ const mapStateToProps = (state: { cards: any }) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         onDeleteCard: (id: string) => {
-            console.log('delete', id);
             dispatch(deleteCard(id));
         },
         onSuccess: (card: any) => {
-            console.log('onSuccess', card);
             dispatch(updateCard(card));
         },
         onFailure: (card: any) => {
-            console.log('onFailure', card);
             dispatch(updateCard(card));
         },
     };

@@ -1,0 +1,53 @@
+/* Fonts */
+
+@font-face {
+    font-family: Raleway-Regular;
+    src: url(../../src/assets/fonts/Raleway/Raleway-Regular.ttf);
+}
+@font-face {
+    font-family: Quicksand;
+    src: url(../../src/assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: PoiretOne-Regular;
+    src: url(../../src/assets/fonts/Poiret_One/PoiretOne-Regular.ttf);
+}
+@font-face {
+    font-family: IndieFlower-Regular;
+    src: url(../../src/assets/fonts/IndieFlower-Regular/IndieFlower-Regular.ttf);
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    &.justify-center {
+        justify-content: center;
+    }
+    &.align-center {
+        align-items: center;
+    }
+}
+
+/* Flex */
+
+.flex {
+    display: flex;
+    &.row {
+        flex-direction: row;
+    }
+    &.column {
+        flex-direction: column;
+    }
+    &.wrap {
+        flex-wrap: wrap;
+    }
+    &.justify-center {
+        justify-content: center;
+    }
+    &.align-center {
+        align-items: center;
+    }
+    &.space-between {
+        justify-content: space-between;
+    }
+}

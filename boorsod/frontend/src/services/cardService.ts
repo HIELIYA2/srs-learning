@@ -3,7 +3,6 @@ const CARD_URL = getUrl('card');
 const resolveData = (res: { data: any }) => res.data;
 
 function addCard(card: any) {
-    console.log('addCard', card);
     return Axios.create({ withCredentials: true })
         .post(CARD_URL, card)
         .then(resolveData);

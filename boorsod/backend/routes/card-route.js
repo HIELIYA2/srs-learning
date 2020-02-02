@@ -30,6 +30,7 @@ function addCardRoutes(app) {
   // CREATE
   app.post(CARD_URL, (req, res) => {
     const card = req.body;
+    console.log("put req!!!!", req.body);
     cardService.addCard(card).then(card => res.json(card));
   });
 

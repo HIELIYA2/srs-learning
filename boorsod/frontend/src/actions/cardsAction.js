@@ -1,13 +1,10 @@
 import { GET_CARDS, GET_CARDS_LEARN, ADD_CARD, DELETE_CARD, UPDATE_CARD } from './types';
 import Streams from '../api/streams';
 
-export const addCard = card => ({
-    type: ADD_CARD,
-    card,
-    payload: fetch(`/api/card`)
-        .then(response => response.json())
-        .then(json => json.card),
-});
+export const addCard = card => async dispatch => {
+    const response = await Streams.post(`/api/card`, card);
+    dispatch({ type: ADD_CARD, payload: response.data });
+};
 
 export const deleteCard = id => ({
     type: DELETE_CARD,
@@ -33,13 +30,15 @@ export const getCards = () => dispatch => {
         );
 };
 
-export const getCardsToLearn = () => dispatch => {
-    fetch('http://localhost:3000/api/card/learn')
+export const getCardsToLearn = user => async dispatch => {
+    await fetch(`http://localhost:3000/api/users/cards/${user.user._id}`, {
+        method: 'GET',
+    })
         .then(res => res.json())
-        .then(data =>
+        .then(data => {
             dispatch({
                 type: GET_CARDS_LEARN,
                 payload: data,
-            }),
-        );
+            });
+        });
 };

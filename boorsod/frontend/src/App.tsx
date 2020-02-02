@@ -4,12 +4,13 @@ import './css/app.css';
 import Router from './RouterCmp';
 import firebase from './firebase';
 import 'firebase/auth';
-import { addUser } from '../src/actions/usersAction';
+import { login } from '../src/actions/usersAction';
 
 interface IUser {
     phutoUrl: string | null;
     name: string | null;
     uid: any;
+    cardsID: any;
 }
 
 interface Props {
@@ -33,9 +34,9 @@ class App extends Component<Props, State> {
                     phutoUrl: user.photoURL,
                     name: user.displayName,
                     uid: user.uid,
+                    cardsID: [],
                 });
             } else {
-                console.log('not good');
                 this.setState({ isSignedIn: false });
             }
         });
@@ -44,7 +45,7 @@ class App extends Component<Props, State> {
     render() {
         const { isSignedIn } = this.state;
         return (
-            <div className="home-page">
+            <div>
                 <Router isSignedIn={isSignedIn} />
             </div>
         );
@@ -53,7 +54,7 @@ class App extends Component<Props, State> {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        onLogin: (user: any) => dispatch(addUser(user)),
+        onLogin: (user: any) => dispatch(login(user)),
     };
 };
 
