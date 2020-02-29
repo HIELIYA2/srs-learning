@@ -18,6 +18,12 @@ function remove(userId) {
   });
 }
 
+function searchUser(userId) {
+  return mongoService.connect().then(db => {
+    const collection = db.collection(USERS_DB);
+    return collection.findOne({ uid: userId });
+  });
+}
 function getUserById(userId) {
   userId = new ObjectId(userId);
   return mongoService.connect().then(db => {
@@ -31,6 +37,16 @@ function getCardById(cardId) {
   return mongoService.connect().then(db => {
     const collection = db.collection("cards");
     return collection.findOne({
+      _id: cardId
+    });
+  });
+}
+
+function getCardByDate(cardId) {
+  cardId = new ObjectId(cardId);
+  return mongoService.connect().then(db => {
+    const collection = db.collection("cards");
+    return collection.findOne({
       _id: cardId,
       nextAppearance: { $lt: Date.now() },
       isDeleted: false
@@ -39,12 +55,14 @@ function getCardById(cardId) {
 }
 
 function getCardsByID(userId) {
+  console.log("getCardsByID activated", userId);
   userId = new ObjectId(userId);
   return mongoService.connect().then(async db => {
     const collection = db.collection(USERS_DB);
     let user = await collection.findOne({
       _id: userId
     });
+    console.log("!!!!!!!!!!!!!!!!!", user);
     const promises = user.cardsID.map(
       async id =>
         await getCardById(id).then(res => {
@@ -56,20 +74,34 @@ function getCardsByID(userId) {
   });
 }
 
+function getCardsByDate(userId) {
+  console.log("getCardsByDate activated", userId);
+  userId = new ObjectId(userId);
+  return mongoService.connect().then(async db => {
+    const collection = db.collection(USERS_DB);
+    let user = await collection.findOne({
+      _id: userId
+    });
+    console.log("!!!!!!!!!!!!!!!!!", user);
+    const promises = user.cardsID.map(
+      async id =>
+        await getCardByDate(id).then(res => {
+          console.log("res", res);
+          return res;
+        })
+    );
+    return Promise.all(promises);
+  });
+}
+
 async function login(user) {
   let user_db = await searchUser(user.uid);
+  console.log(user_db, "user", user);
   if (!user_db) {
     user_db = await addUser(user);
   }
   console.log("after login user:", user_db);
   return user_db;
-}
-
-function searchUser(userId) {
-  return mongoService.connect().then(db => {
-    const collection = db.collection(USERS_DB);
-    return collection.findOne({ uid: userId });
-  });
 }
 
 function addUser(user) {
@@ -90,9 +122,6 @@ function addCardID(card, cardId) {
       { uid: card.uid },
       { $push: { cardsID: cardId } }
     );
-    // .then(() => {
-    //   return getUserById(userId);
-    // });
   });
 }
 
@@ -114,6 +143,7 @@ module.exports = {
   remove,
   getUserById,
   getCardsByID,
+  getCardsByDate,
   addUser,
   updateUser,
   addCardID

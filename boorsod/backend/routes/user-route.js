@@ -8,11 +8,18 @@ function addUserRoutes(app) {
     userService.query().then(users => res.json(users));
   });
 
-  // LIST BY DATE
+  // LIST BY ID
   app.get(`${USER_URL}/cards/:userId`, (req, res) => {
     const userId = req.params.userId;
-    console.log("LIST BY DATE userId ", userId);
+    console.log("LIST BY ID userId ", userId);
     userService.getCardsByID(userId).then(cards => res.json(cards));
+  });
+
+  // LIST BY DATE
+  app.get(`${USER_URL}/learn/:userId`, (req, res) => {
+    const userId = req.params.userId;
+    console.log("LIST BY DATE userId ", userId);
+    userService.getCardsByDate(userId).then(cards => res.json(cards));
   });
 
   // SINGLE - GET Full detail

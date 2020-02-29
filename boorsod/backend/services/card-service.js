@@ -10,7 +10,8 @@ function query() {
   });
 }
 
-function getCardsByDate() {
+function getCardsByUser(userId) {
+  userIduserId = new ObjectId(userId);
   return mongoService.connect().then(db =>
     db
       .collection(CARDS_DB)
@@ -66,7 +67,7 @@ function updateCard(card) {
 
 module.exports = {
   query,
-  getCardsByDate,
+  getCardsByUser,
   remove,
   getCardById,
   addCard,

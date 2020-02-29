@@ -1,41 +1,49 @@
-h1 {
-    width: 100vw;
-    height: calc(100vh - 80px);
+.home {
+    height: 600px;
+    overflow: hidden;
+    background: rgb(15, 177, 189);
+    background: linear-gradient(rgba(216, 216, 216, 0.733), rgba(15, 177, 189, 0.726)),
+        url('../../assets/images/desk.jpg'); /* The least supported option. */
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
-}
 
-.head {
-    width: 100%;
-    .home-visual {
-        margin-top: 3px;
-        width: 90vw;
-        mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 30%, rgba(255, 255, 255, 0) 80%);
+    .home-img-1,
+    .home-img-2,
+    .home-img-3 {
+        overflow: hidden;
+        object-fit: cover;
+        display: flex;
+        vertical-align: middle;
+        width: calc(100vw / 3);
+        opacity: 0.5;
+        outline: 200px solid rgba(15, 177, 189, 0.4) !important;
+        outline-offset: -200px;
     }
-    .home-h {
-        font-family: IndieFlower-Regular;
+
+    .home-txt-1,
+    .home-txt-2,
+    .home-txt-3 {
         display: flex;
         flex-direction: column;
-        position: absolute;
-        top: 40vh;
-        left: 60vw;
-        font-size: 60px;
-        z-index: 1;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
         font-weight: bold;
-
-        .home-h1 {
-            margin-bottom: 40px;
-        }
+        font-size: 70px;
+        .home-h1,
         .home-h2 {
-            margin-bottom: 40px;
+            margin-bottom: 20px;
+            color: rgb(0, 23, 58);
         }
+
         .home-memory {
             display: flex;
-            margin-bottom: 40px;
             .home-h3 {
+                color: rgb(0, 23, 58);
             }
             .home-point {
                 margin-left: 5px;

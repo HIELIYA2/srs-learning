@@ -2,13 +2,6 @@ import Axios from 'axios';
 const USER_URL = getUrl('users');
 const resolveData = (res: { data: any }) => res.data;
 
-// function login(user: any) {
-//     console.log('add user in service:', user);
-//     return Axios.create({ withCredentials: true })
-//         .post(USER_URL, user)
-//         .then(resolveData);
-// }
-
 function query() {
     return Axios.create({ withCredentials: true })
         .get(USER_URL)
@@ -28,5 +21,4 @@ function getUrl(entityName: string) {
 export default {
     query,
     getUserById,
-    // login,
 };

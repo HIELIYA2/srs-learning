@@ -2,7 +2,6 @@
     letter-spacing: 0.6px;
     box-sizing: border-box;
     color: black;
-    font-family: Raleway-Regular;
 }
 a {
     color: black;
@@ -16,7 +15,7 @@ a:hover {
 
 .App-header {
     text-align: center;
-    font-family: Raleway-Regular;
+    font-family: Raleway-ExtraLight;
     background-color: #ffffff;
     min-height: 100vh;
     display: flex;

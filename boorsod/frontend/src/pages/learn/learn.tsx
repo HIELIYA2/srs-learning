@@ -21,7 +21,7 @@ interface user {
     phutoUrl: string | null;
     name: string | null;
     uid: string | null;
-    cards: any;
+    cardsID: any;
 }
 
 interface card {
@@ -48,7 +48,7 @@ class Learn extends Component<myProps, myState> {
         console.log('nextCard', currentCard);
     };
     componentDidMount() {
-        console.log('learn componentDidMount :', this.props.user);
+        console.log('learn componentDidMount :', this.props.user, this.props.cards);
         this.props.getCardsToLearn(this.props.user);
     }
 

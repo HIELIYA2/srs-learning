@@ -19,8 +19,9 @@ export const updateCard = card => async dispatch => {
     dispatch({ type: UPDATE_CARD, payload: response.data });
 };
 
-export const getCards = () => dispatch => {
-    fetch('http://localhost:3000/api/card')
+export const getCards = user => async dispatch => {
+    console.log('getCards', user);
+    await fetch(`http://localhost:3000/api/users/cards/${user.user._id}`)
         .then(res => res.json())
         .then(data =>
             dispatch({
@@ -31,7 +32,8 @@ export const getCards = () => dispatch => {
 };
 
 export const getCardsToLearn = user => async dispatch => {
-    await fetch(`http://localhost:3000/api/users/cards/${user.user._id}`, {
+    console.log('getCardsToLearn', user);
+    await fetch(`http://localhost:3000/api/users/learn/${user.user._id}`, {
         method: 'GET',
     })
         .then(res => res.json())

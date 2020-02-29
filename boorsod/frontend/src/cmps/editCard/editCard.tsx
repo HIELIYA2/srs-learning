@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addCard } from '../../actions/cardsAction';
-import './addCard.scss';
+import { updateCard } from '../../actions/cardsAction';
+
+import './editCard.scss';
 
 interface ICard {
     term: string;
@@ -13,49 +14,30 @@ interface ICard {
     isDeleted: boolean;
     uid: string | null;
 }
-interface IUser {
-    _id: string | null;
-    phutoUrl: string | null;
-    name: string | null;
-    uid: string | null;
-    cards: any;
-}
-interface UUser {
-    user: IUser;
-}
+
 interface State {
     term: string;
     definition: string;
 }
 interface Props {
-    user: UUser;
-    onAddClick: (card: ICard) => void;
+    card: any;
+    onEditClick: (card: ICard) => void;
 }
 
-class AddCard extends Component<Props, State> {
+class EditCard extends Component<Props, State> {
     state = {
-        term: '',
-        definition: '',
+        term: this.props.card.term,
+        definition: this.props.card.definition,
     };
 
     handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        const { term, definition } = this.state;
-        if (!term.trim() || !definition.trim()) return;
-        this.props.onAddClick({
-            term,
-            definition,
-            createAt: Date.now(),
-            tags: [],
-            nextAppearance: Date.now() + 86400000,
-            slot: [1],
-            isDeleted: false,
-            uid: this.props.user.user.uid,
-        });
-        this.setState({
-            term: '',
-            definition: '',
-        });
+        let card = this.props.card;
+        card.term = this.state.term;
+        card.definition = this.state.definition;
+        if (!card.term.trim() || !card.definition.trim()) return;
+        this.props.onEditClick(card);
+        window.history.back();
     };
 
     handleChangeTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,16 +79,12 @@ class AddCard extends Component<Props, State> {
     }
 }
 
-const mapStateToProps = (state: { user: any }) => {
-    return { user: state.user };
-};
-
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        onAddClick: (card: any) => {
-            dispatch(addCard(card));
+        onEditClick: (card: any) => {
+            dispatch(updateCard(card));
         },
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddCard);
+export default connect(null, mapDispatchToProps)(EditCard);
