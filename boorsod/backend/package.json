@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node server.js"
   },
+  "engines": {
+    "node": "12.11.1"
+  },
   "author": "Mas & Hillel",
   "license": "ISC",
   "dependencies": {
