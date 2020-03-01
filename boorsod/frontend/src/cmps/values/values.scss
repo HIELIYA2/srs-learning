@@ -1,0 +1,60 @@
+.values {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+    cursor: pointer;
+    .index {
+        height: inherit;
+        color: rgb(126, 126, 126);
+        font-size: 1.3em;
+        display: flex;
+        align-items: center;
+    }
+    .face-card {
+        width: calc((100vw - 200px) / 2);
+        overflow: auto;
+        color: rgb(32, 32, 32);
+        padding: 44px;
+        margin: 0 10px 0;
+        display: flex;
+        justify-content: center;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0px 0px 6px 0.7px rgba(196, 196, 196, 1);
+        .term,
+        .definition {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .action-buttons {
+        height: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        .isDeleted {
+            .restore-button,
+            .delete-button {
+                border: none;
+                background-color: rgba(255, 255, 255, 0);
+                cursor: pointer;
+            }
+            .edit-img,
+            .trash-img,
+            .restore-img {
+                height: 20px;
+                filter: invert(63%) sepia(0%) saturate(0%) hue-rotate(316deg) brightness(90%) contrast(90%);
+            }
+        }
+        .edit {
+            .edit-img {
+                filter: invert(63%) sepia(0%) saturate(0%) hue-rotate(316deg) brightness(90%) contrast(90%);
+                height: 20px;
+            }
+        }
+    }
+}
