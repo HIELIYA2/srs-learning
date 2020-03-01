@@ -73,15 +73,20 @@ class Nav extends React.Component<IProps, IState> {
                             {this.props.isSignedIn ? (
                                 <div className="user-buttons">
                                     <Link to="/learn">
-                                        <li className="SingInLinks-li">Learn</li>
+                                        <li className="SingInLinks-li" onClick={() => this.handleLinkClick()}>
+                                            Learn
+                                        </li>
                                     </Link>
                                     <hr className="hr-mobile" />
                                     <Link to="/cards">
-                                        <li className="SingInLinks-li">Cards</li>
+                                        <li className="SingInLinks-li" onClick={() => this.handleLinkClick()}>
+                                            Cards
+                                        </li>
                                     </Link>
                                     <hr className="hr-mobile" />
                                     <Link
                                         className="SingInLinks-li"
+                                        onClick={() => this.handleLinkClick()}
                                         to={{ pathname: '/create', state: { term: '', definition: '' } }}
                                     >
                                         New-card
@@ -91,7 +96,10 @@ class Nav extends React.Component<IProps, IState> {
                                         <Link to="/">
                                             <button
                                                 className="sign-out-button"
-                                                onClick={() => firebase.auth().signOut()}
+                                                onClick={() => {
+                                                    firebase.auth().signOut();
+                                                    this.handleLinkClick();
+                                                }}
                                             >
                                                 Sign-out
                                             </button>
@@ -102,7 +110,9 @@ class Nav extends React.Component<IProps, IState> {
                             ) : (
                                 <div className="user-buttons">
                                     <Link to="/login">
-                                        <div className="login-button">Login</div>
+                                        <div className="login-button" onClick={() => this.handleLinkClick()}>
+                                            Login
+                                        </div>
                                     </Link>
                                 </div>
                             )}
@@ -122,30 +132,3 @@ const mapStateToProps = (state: { user: any }) => {
 };
 
 export default connect(mapStateToProps)(Nav);
-
-// {
-//     this.props.isSignedIn ? (
-//         <div className="user-buttons">
-//             <SingInLinks />
-//             <div className="user-conected-buttons">
-//                 <img className="img-profile" src={img} alt="" />
-//                 <Link to="/">
-//                     <button className="sign-out-button" onClick={() => firebase.auth().signOut()}>
-//                         sign out
-//                     </button>
-//                 </Link>
-//                 <Link className="nav-add-card" to={{ pathname: '/create', state: { term: '', definition: '' } }}>
-//                     +
-//                 </Link>
-//             </div>
-//         </div>
-//     ) : (
-//         <div className="user-buttons">
-//             <div className="user-unconected-buttons">
-//                 <Link to="/login">
-//                     <div className="login-button">Login</div>
-//                 </Link>
-//             </div>
-//         </div>
-//     );
-// }
