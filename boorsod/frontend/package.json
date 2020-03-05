@@ -1,68 +1,72 @@
 {
-  "name": "borsood",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.18.0",
-    "firebase": "^7.6.1",
-    "react": "^16.8.6",
-    "react-components": "github:HIELIYA2/react-components#master",
-    "react-dom": "^16.8.6",
-    "react-firebaseui": "^4.0.0",
-    "react-redux": "^7.1.0",
-    "react-router": "^5.0.0",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
-    "typescript": "3.4.5"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
+    "name": "borsood",
+    "version": "0.1.0",
+    "private": true,
+    "engines": {
+        "npm": "6.14.1",
+        "node": "12.13.0"
     },
-    "extends": "react-app",
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@types/jest": "24.0.13",
-    "@types/node": "12.0.2",
-    "@types/react": "16.8.18",
-    "@types/react-dom": "16.8.4",
-    "@types/react-redux": "^7.1.5",
-    "@types/react-router-dom": "^4.3.5",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.1",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-react": "^7.16.0",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^1.11.1"
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": ".eslintrc.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "dependencies": {
+        "axios": "^0.18.0",
+        "firebase": "^7.6.1",
+        "react": "^16.8.6",
+        "react-components": "github:HIELIYA2/react-components#master",
+        "react-dom": "^16.8.6",
+        "react-firebaseui": "^4.0.0",
+        "react-redux": "^7.1.0",
+        "react-router": "^5.0.0",
+        "react-router-dom": "^5.0.1",
+        "react-scripts": "3.0.1",
+        "redux": "^4.0.1",
+        "redux-thunk": "^2.3.0",
+        "typescript": "3.4.5"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": "react-app",
+        "parserOptions": {
+            "parser": "babel-eslint"
+        }
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@types/jest": "24.0.13",
+        "@types/node": "12.0.2",
+        "@types/react": "16.8.18",
+        "@types/react-dom": "16.8.4",
+        "@types/react-redux": "^7.1.5",
+        "@types/react-router-dom": "^4.3.5",
+        "eslint": "^5.16.0",
+        "eslint-config-airbnb": "^17.1.1",
+        "eslint-config-prettier": "^4.3.0",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-react": "^7.16.0",
+        "prettier": "^1.19.1",
+        "pretty-quick": "^1.11.1"
+    },
+    "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+    "main": ".eslintrc.js",
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }
