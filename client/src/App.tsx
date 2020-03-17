@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
+const React = require('react');
 import { connect } from 'react-redux';
 import './css/app.css';
 import Router from './RouterCmp';
@@ -21,7 +22,7 @@ interface State {
     isSignedIn: boolean;
 }
 
-class App extends Component<Props, State> {
+class App extends React.Component<Props, State> {
     state = {
         isSignedIn: false,
     };
