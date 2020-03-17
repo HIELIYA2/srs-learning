@@ -1,11 +1,11 @@
-// import React, { Component } from 'react';
-const React = require('react');
 import { connect } from 'react-redux';
 import './css/app.css';
 import Router from './RouterCmp';
 import firebase from './firebase';
 import 'firebase/auth';
 import { login } from '../src/actions/usersAction';
+// import React, { Component } from 'react';
+const React = require('react');
 
 interface IUser {
     phutoUrl: string | null;
