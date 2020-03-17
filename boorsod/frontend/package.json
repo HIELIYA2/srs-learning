@@ -2,10 +2,6 @@
     "name": "borsood",
     "version": "0.1.0",
     "private": true,
-    "engines": {
-        "npm": "6.14.1",
-        "node": "12.13.0"
-    },
     "dependencies": {
         "axios": "^0.18.0",
         "firebase": "^7.6.1",
@@ -23,7 +19,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "react-scripts build",
+        "build": "react-scripts build --dest ../backend",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
