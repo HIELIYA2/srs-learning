@@ -21,7 +21,8 @@ export const updateCard = card => async dispatch => {
 
 export const getCards = user => async dispatch => {
     console.log('getCards', user);
-    await fetch(`http://localhost:3000/api/users/cards/${user.user._id}`)
+    const CARD_URL = getUrl('cards', user.user._id);
+    await fetch(CARD_URL)
         .then(res => res.json())
         .then(data =>
             dispatch({
@@ -33,7 +34,8 @@ export const getCards = user => async dispatch => {
 
 export const getCardsToLearn = user => async dispatch => {
     console.log('getCardsToLearn', user);
-    await fetch(`http://localhost:3000/api/users/learn/${user.user._id}`, {
+    const CARD_URL = getUrl('learn', user.user._id);
+    await fetch(CARD_URL, {
         method: 'GET',
     })
         .then(res => res.json())
@@ -44,3 +46,9 @@ export const getCardsToLearn = user => async dispatch => {
             });
         });
 };
+
+function getUrl(entityName, id) {
+    return process.env.NODE_ENV !== 'development'
+        ? `/api/users/${entityName}/${id}`
+        : `//localhost:3000/api/users/${entityName}/${id}`;
+}
