@@ -3,13 +3,14 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const path = require("path");
 
 const addCardRoutes = require("./routes/card-route");
 const addUserRoutes = require("./routes/user-route");
 
 const app = express();
 let server = require("http").Server(app);
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "./client/build")));
 app.use(
   cors({
     origin: ["http://localhost:3001"],
