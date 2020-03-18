@@ -8,6 +8,13 @@ const connect = require('react-redux');
 // import React, { Component } from 'react';
 const React = require('react');
 
+declare namespace JSX {
+    interface Element {}
+    interface IntrinsicElements {
+        div: any;
+    }
+}
+
 interface IUser {
     phutoUrl: string | null;
     name: string | null;
