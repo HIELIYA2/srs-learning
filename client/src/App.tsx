@@ -3,17 +3,8 @@ import Router from './RouterCmp';
 import firebase from './firebase';
 import 'firebase/auth';
 import { login } from '../src/actions/usersAction';
-// import { connect } from 'react-redux';
-const connect = require('react-redux');
-// import React, { Component } from 'react';
-const React = require('react');
-
-declare namespace JSX {
-    interface Element {}
-    interface IntrinsicElements {
-        div: any;
-    }
-}
+import { connect } from 'react-redux';
+import React, { Component } from 'react';
 
 interface IUser {
     phutoUrl: string | null;
