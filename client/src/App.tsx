@@ -1,9 +1,10 @@
-import { connect } from 'react-redux';
 import './css/app.css';
 import Router from './RouterCmp';
 import firebase from './firebase';
 import 'firebase/auth';
 import { login } from '../src/actions/usersAction';
+// import { connect } from 'react-redux';
+const onnect = require('react-redux');
 // import React, { Component } from 'react';
 const React = require('react');
 
