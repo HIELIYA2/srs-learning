@@ -50,8 +50,8 @@ class EditCard extends Component<Props, State> {
 
     render() {
         return (
-            <div className="create-page">
-                <form className="form-add-card" onSubmit={this.handleSubmit}>
+            <div className="edit-page">
+                <form className="form-edit-card" onSubmit={this.handleSubmit}>
                     <div className="inputs">
                         <input
                             name="textarea"

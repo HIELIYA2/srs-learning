@@ -21,7 +21,7 @@ interface State {
     isSignedIn: boolean;
 }
 
-class App extends React.Component<Props, State> {
+class App extends Component<Props, State> {
     state = {
         isSignedIn: false,
     };

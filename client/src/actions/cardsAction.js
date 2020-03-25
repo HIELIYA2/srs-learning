@@ -20,8 +20,8 @@ export const updateCard = card => async dispatch => {
 };
 
 export const getCards = user => async dispatch => {
-    console.log('getCards', user);
     const CARD_URL = getUrl('cards', user.user._id);
+    console.log('getCards', user, CARD_URL);
     await fetch(CARD_URL)
         .then(res => res.json())
         .then(data =>
@@ -33,8 +33,8 @@ export const getCards = user => async dispatch => {
 };
 
 export const getCardsToLearn = user => async dispatch => {
-    console.log('getCardsToLearn', user);
     const CARD_URL = getUrl('learn', user.user._id);
+    console.log('getCardsToLearn', user, CARD_URL);
     await fetch(CARD_URL, {
         method: 'GET',
     })
