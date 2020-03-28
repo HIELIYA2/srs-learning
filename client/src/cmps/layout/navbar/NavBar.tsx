@@ -30,7 +30,7 @@ interface IState {
 
 class Nav extends React.Component<IProps, IState> {
     state = {
-        menuOpen: false,
+        menuOpen: true,
         isMobile: true,
     };
 
@@ -42,6 +42,7 @@ class Nav extends React.Component<IProps, IState> {
                     isMobile: window.innerWidth < 900,
                     menuOpen: false,
                 });
+                console.log(this.state.menuOpen);
             },
             false,
         );
@@ -59,7 +60,6 @@ class Nav extends React.Component<IProps, IState> {
         const className = this.state.isMobile ? 'mobile' : '';
         console.log('is mobile', this.state.isMobile);
         console.log('is menu open', this.state.menuOpen);
-
         return (
             <nav>
                 <div className="nav-container">
