@@ -40,7 +40,7 @@ class Nav extends React.Component<IProps, IState> {
             () => {
                 this.setState({
                     isMobile: window.innerWidth < 900,
-                    menuOpen: true,
+                    menuOpen: false,
                 });
             },
             false,
@@ -57,6 +57,9 @@ class Nav extends React.Component<IProps, IState> {
     render() {
         let img = this.props.user.user.phutoUrl;
         const className = this.state.isMobile ? 'mobile' : '';
+        console.log('is mobile', this.state.isMobile);
+        console.log('is menu open', this.state.menuOpen);
+
         return (
             <nav>
                 <div className="nav-container">
@@ -69,7 +72,7 @@ class Nav extends React.Component<IProps, IState> {
                     </Link>
 
                     <div className={className}>
-                        <Menu open={this.state.menuOpen}>
+                        <Menu open={this.state.isMobile ? this.state.menuOpen : true}>
                             {this.props.isSignedIn ? (
                                 <div className="user-buttons">
                                     <Link to="/learn">

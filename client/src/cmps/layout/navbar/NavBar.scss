@@ -66,10 +66,12 @@
                 border-radius: 10%;
             }
         }
-
         .login-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-weight: bold;
-            font-size: 20px;
+            font-size: 40px;
             color: rgb(15, 177, 189);
             transition: 0.3s;
             margin: 0 10px;
