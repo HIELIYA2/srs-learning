@@ -30,8 +30,8 @@ interface IState {
 
 class Nav extends React.Component<IProps, IState> {
     state = {
-        menuOpen: true,
-        isMobile: true,
+        menuOpen: false,
+        isMobile: window.innerWidth < 900,
     };
 
     componentDidMount() {
@@ -42,19 +42,20 @@ class Nav extends React.Component<IProps, IState> {
                     isMobile: window.innerWidth < 900,
                     menuOpen: false,
                 });
-                console.log(this.state.menuOpen);
             },
             false,
         );
     }
 
-    handleMenuClick() {
-        this.setState({ menuOpen: !this.state.menuOpen });
-    }
+    handleMenuClick = () => {
+        this.setState(({ menuOpen }) => ({
+            menuOpen: !menuOpen,
+        }));
+    };
 
-    handleLinkClick() {
+    handleLinkClick = () => {
         this.setState({ menuOpen: false });
-    }
+    };
     render() {
         let img = this.props.user.user.phutoUrl;
         const className = this.state.isMobile ? 'mobile' : '';
@@ -76,13 +77,13 @@ class Nav extends React.Component<IProps, IState> {
                             {this.props.isSignedIn ? (
                                 <div className="user-buttons">
                                     <Link to="/learn">
-                                        <li className="SingInLinks-li" onClick={() => this.handleLinkClick()}>
+                                        <li className="SingInLinks-li" onClick={this.handleLinkClick}>
                                             Learn
                                         </li>
                                     </Link>
                                     <hr className="hr-mobile" />
                                     <Link to="/cards">
-                                        <li className="SingInLinks-li" onClick={() => this.handleLinkClick()}>
+                                        <li className="SingInLinks-li" onClick={this.handleLinkClick}>
                                             Cards
                                         </li>
                                     </Link>
@@ -113,7 +114,7 @@ class Nav extends React.Component<IProps, IState> {
                             ) : (
                                 <div className="user-buttons">
                                     <Link to="/login">
-                                        <div className="login-button" onClick={() => this.handleLinkClick()}>
+                                        <div className="login-button" onClick={this.handleLinkClick}>
                                             Login
                                         </div>
                                     </Link>
@@ -122,7 +123,7 @@ class Nav extends React.Component<IProps, IState> {
                         </Menu>
                     </div>
                     <div className="container">
-                        <MenuButton open={this.state.menuOpen} onClick={() => this.handleMenuClick()} />
+                        <MenuButton open={this.state.menuOpen} onClick={this.handleMenuClick} />
                     </div>
                 </div>
             </nav>
