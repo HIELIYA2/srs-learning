@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Props } from 'react';
 import './learn.scss';
 import Board from '../../cmps/board/board';
 import Loading from '../../cmps/loading/loading';
@@ -47,11 +47,11 @@ class Learn extends Component<myProps, myState> {
         });
         console.log('nextCard', currentCard);
     };
-    componentDidMount() {
-        console.log('learn componentDidMount :', this.props.user, this.props.cards);
-        this.props.getCardsToLearn(this.props.user);
+    componentDidUpdate(prevProps: myProps) {
+        if (this.props.user !== prevProps.user) {
+            this.props.getCardsToLearn(this.props.user);
+        }
     }
-
     render() {
         const { index } = this.state;
         const { cards } = this.props;
