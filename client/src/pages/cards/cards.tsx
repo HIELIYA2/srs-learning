@@ -8,7 +8,7 @@ import { getCards } from '../../actions/cardsAction';
 interface myProps {
     cards: [Card] | null;
     error: string | null;
-    user: [user];
+    user: User;
     getCards: Function;
 }
 
@@ -24,7 +24,7 @@ interface Card {
     uid: string;
 }
 
-interface user {
+interface User {
     _id: string | null;
     phutoUrl: string | null;
     name: string | null;
@@ -35,8 +35,8 @@ interface user {
 class Learn extends Component<myProps> {
     componentDidMount() {
         const {user, getCards} = this.props;
-        const hasUser = Object.keys(user).length === 0
-        if (hasUser) {
+        const isUserEmpty = Object.keys(user).length === 0;
+        if (!isUserEmpty) {
             getCards(user);
         }
     }
@@ -78,10 +78,10 @@ const mapStateToProps = (state: { cards: any; user: any }) => {
     const cards = state.cards.cards;
     const filteredCards = cards ? cards.filter((card: Card) => !!card) : cards;
     return ({
-        // TODO: why is it nested in cards.cards / cards.error?
+        // TODO: why is it nested in cards.cards / cards.error / user.user?
         cards: filteredCards,
         error: state.cards.error,
-        user: state.user,
+        user: state.user.user,
     });
 }
 export default connect(mapStateToProps, { getCards })(Learn);
