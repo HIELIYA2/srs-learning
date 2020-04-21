@@ -6,13 +6,13 @@ import { connect } from 'react-redux';
 import { getCards } from '../../actions/cardsAction';
 
 interface myProps {
-    cards: [card] | null;
+    cards: [Card] | null;
     error: string | null;
     user: [user];
     getCards: Function;
 }
 
-interface card {
+interface Card {
     _id: string | number | undefined;
     term: string;
     definition: string;
@@ -34,8 +34,17 @@ interface user {
 
 class Learn extends Component<myProps> {
     componentDidMount() {
-        console.log('cards componentDidMount :', this.props.user, this.props.cards);
-        this.props.getCards(this.props.user);
+        const {user, getCards} = this.props;
+        const hasUser = Object.keys(user).length === 0
+        if (hasUser) {
+            getCards(user);
+        }
+    }
+
+    componentDidUpdate(prevProps: myProps) {
+        if (this.props.user !== prevProps.user) {
+            this.props.getCards(this.props.user);
+        }
     }
 
     render() {
@@ -65,11 +74,14 @@ class Learn extends Component<myProps> {
         )
     }
 }
-const mapStateToProps = (state: { cards: any; user: any }) => ({
-    // TODO: why is it nested in cards.cards / cards.error?
-    cards: state.cards.cards,
-    error: state.cards.error,
-    user: state.user,
-});
-
+const mapStateToProps = (state: { cards: any; user: any }) => {
+    const cards = state.cards.cards;
+    const filteredCards = cards ? cards.filter((card: Card) => !!card) : cards;
+    return ({
+        // TODO: why is it nested in cards.cards / cards.error?
+        cards: filteredCards,
+        error: state.cards.error,
+        user: state.user,
+    });
+}
 export default connect(mapStateToProps, { getCards })(Learn);

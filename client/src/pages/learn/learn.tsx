@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import { getCardsToLearn } from '../../actions/cardsAction';
 
 interface myProps {
-    cards: [card] | null;
+    cards: [Card] | null;
+    error: string | null;
     user: [user];
     getCardsToLearn: Function;
 }
@@ -23,7 +24,7 @@ interface user {
     cardsID: any;
 }
 
-interface card {
+interface Card {
     _id: string;
     term: string;
     definition: string;
@@ -38,6 +39,15 @@ class Learn extends Component<myProps, myState> {
     state = {
         index: 0,
     };
+
+    componentDidMount() {
+        const {user, getCardsToLearn} = this.props;
+        const hasUser = Object.keys(user).length === 0;
+        if (hasUser) {
+            getCardsToLearn(user);
+        }
+    }
+
     getNextCard = () => {
         let currentCard = this.state.index;
         this.setState({
@@ -45,14 +55,21 @@ class Learn extends Component<myProps, myState> {
         });
         console.log('nextCard', currentCard);
     };
+
     componentDidUpdate(prevProps: myProps) {
+        console.log('componentDidUpdate');
         if (this.props.user !== prevProps.user) {
             this.props.getCardsToLearn(this.props.user);
         }
     }
+
     render() {
         const { index } = this.state;
-        const { cards } = this.props;
+        const { cards, error } = this.props;
+
+        if (error) {
+            return <h1>{error}</h1>;
+        }
 
         if (cards === null) {
             return <Loading />;
@@ -63,7 +80,7 @@ class Learn extends Component<myProps, myState> {
                 <div>
                     <ul>
                         <div>
-                            {cards[index] && cards[index].nextAppearance < Date.now() && (
+                            {cards[index] && (
                                 <Board card={cards[index]} getNextCard={this.getNextCard} />
                             )}
                         </div>
@@ -75,9 +92,15 @@ class Learn extends Component<myProps, myState> {
         }
     }
 }
-const mapStateToProps = (state: { cards: any; user: any }) => ({
-    cards: state.cards.cards,
-    user: state.user,
-});
+const mapStateToProps = (state: { cards: any; user: any }) => {
+    const cards = state.cards.cards;
+    const filteredCards = cards ? cards.filter((card: Card) => !!card && card.nextAppearance < Date.now()) : cards;
+    return ({
+        // TODO: why is it nested in cards.cards / cards.error?
+        cards: filteredCards,
+        error: state.cards.error,
+        user: state.user,
+    });
+}
 
 export default connect(mapStateToProps, { getCardsToLearn })(Learn);
