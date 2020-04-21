@@ -1,4 +1,5 @@
 import Axios from 'axios';
+
 const USER_URL = getUrl('users');
 const resolveData = (res: { data: any }) => res.data;
 
