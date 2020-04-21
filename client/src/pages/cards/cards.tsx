@@ -6,12 +6,12 @@ import { connect } from 'react-redux';
 import { getCards } from '../../actions/cardsAction';
 
 interface myProps {
-    cards: [card] | null;
+    cards: [Card] | null;
     user: User;
     getCards: Function;
 }
 
-interface card {
+interface Card {
     _id: string | number | undefined;
     term: string;
     definition: string;
