@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, "./client/build")));
 app.use(
   cors({
     origin: ["http://localhost:3001"],
-    credentials: true // enable set cookie
+    credentials: true, // enable set cookie
   })
 );
 app.use(bodyParser.json());
@@ -24,7 +24,7 @@ app.use(
     secret: "borsood",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }
+    cookie: { secure: false },
   })
 );
 
@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
   res.send("you are connected");
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 server.listen(port, () => {
   console.log(`Server running at port ${port}`);
 });

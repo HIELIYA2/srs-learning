@@ -32,8 +32,6 @@ export const getCards = user => async dispatch => {
         );
 };
 
-//check
-
 export const getCardsToLearn = user => async dispatch => {
     const CARD_URL = getUrl('learn', user.user._id);
     console.log('getCardsToLearn', user, CARD_URL);

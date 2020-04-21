@@ -1,4 +1,4 @@
-import React, { Component, Props } from 'react';
+import React, { Component } from 'react';
 import './learn.scss';
 import Board from '../../cmps/board/board';
 import Loading from '../../cmps/loading/loading';
