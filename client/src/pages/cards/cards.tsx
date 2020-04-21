@@ -23,10 +23,6 @@ interface card {
     uid: string;
 }
 
-interface myState {
-    isLoading: boolean;
-}
-
 interface user {
     _id: string | null;
     phutoUrl: string | null;
@@ -35,11 +31,7 @@ interface user {
     cardsID: any;
 }
 
-class Learn extends Component<myProps, myState> {
-    state = {
-        isLoading: true,
-    };
-
+class Learn extends Component<myProps> {
     componentDidMount() {
         console.log('cards componentDidMount :', this.props.user, this.props.cards);
         this.props.getCards(this.props.user);
