@@ -59,8 +59,6 @@ class Nav extends React.Component<IProps, IState> {
     render() {
         let img = this.props.user.user.phutoUrl;
         const className = this.state.isMobile ? 'mobile' : '';
-        console.log('is mobile', this.state.isMobile);
-        console.log('is menu open', this.state.menuOpen);
         return (
             <nav>
                 <div className="nav-container">
