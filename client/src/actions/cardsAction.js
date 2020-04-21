@@ -46,11 +46,19 @@ export const getCardsToLearn = user => async dispatch => {
     await fetch(CARD_URL, {
         method: 'GET',
     })
-        .then(res => res.json())
+        .then(res => res.json() || res)
         .then(data => {
             dispatch({
                 type: GET_CARDS_LEARN,
                 payload: data,
+                error: null,
+            });
+        })
+        .catch(error => {
+            dispatch({
+                type: GET_CARDS_LEARN,
+                payload: [],
+                error: 'sorry there was an error loading cards to learn :(',
             });
         });
 };
