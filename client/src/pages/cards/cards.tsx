@@ -57,7 +57,7 @@ class Learn extends Component<myProps, myState> {
         }
     }
     render() {
-        let curentindex = 1;
+        let currentIndex = 1;
         const { cards } = this.props;
         return this.state.isLoading ? (
             <Loading />
@@ -65,7 +65,7 @@ class Learn extends Component<myProps, myState> {
             <div className="table">
                 {cards.map(card => (
                     <div key={card._id}>
-                        <Values values={card} index={curentindex++} />
+                        <Values values={card} index={currentIndex++} />
                     </div>
                 ))}
             </div>
