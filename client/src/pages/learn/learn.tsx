@@ -13,7 +13,6 @@ interface myProps {
 
 interface myState {
     index: number;
-    isLoading: boolean;
 }
 
 interface user {
@@ -38,7 +37,6 @@ interface card {
 class Learn extends Component<myProps, myState> {
     state = {
         index: 0,
-        isLoading: true,
     };
     getNextCard = () => {
         let currentCard = this.state.index;
@@ -60,6 +58,11 @@ class Learn extends Component<myProps, myState> {
         const filtered = cards.filter(function(e) {
             return e;
         });
+
+        if (cards === null) {
+            return <Loading />;
+        }
+
         if (filtered[index]) {
             return (
                 <div>
