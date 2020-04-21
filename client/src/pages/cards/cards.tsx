@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getCards } from '../../actions/cardsAction';
 
 interface myProps {
-    cards: [card];
+    cards: [card] | null;
     user: [user];
     getCards: Function;
 }
@@ -45,31 +45,27 @@ class Learn extends Component<myProps, myState> {
         this.props.getCards(this.props.user);
     }
 
-    UNSAFE_componentWillReceiveProps() {
-        console.log(
-            'cards UNSAFE_componentWillReceiveProps :',
-            this.props.user,
-            this.props.cards,
-            this.state.isLoading,
-        );
-        if (this.props.cards.length > 0) {
-            this.setState({ isLoading: false });
-        }
-    }
     render() {
         let currentIndex = 1;
         const { cards } = this.props;
-        return this.state.isLoading ? (
-            <Loading />
-        ) : (
+
+        if (cards === null) {
+            return <Loading />;
+        }
+
+        if (cards.length < 1) {
+          return <h1>There are no terms to learn today</h1>;
+        }
+
+        return (
             <div className="table">
-                {cards.map(card => (
-                    <div key={card._id}>
-                        <Values values={card} index={currentIndex++} />
-                    </div>
-                ))}
+              {cards.map(card => (
+                <div key={card._id}>
+                  <Values values={card} index={currentIndex++} />
+                </div>
+              ))}
             </div>
-        );
+        )
     }
 }
 const mapStateToProps = (state: { cards: any; user: any }) => ({
