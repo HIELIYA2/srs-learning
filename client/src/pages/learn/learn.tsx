@@ -6,8 +6,9 @@ import { connect } from 'react-redux';
 import { getCardsToLearn } from '../../actions/cardsAction';
 
 interface myProps {
-    cards: [card] | null;
-    user: [user];
+    cards: [Card] | null;
+    error: string | null;
+    user: User;
     getCardsToLearn: Function;
 }
 
@@ -15,15 +16,14 @@ interface myState {
     index: number;
 }
 
-interface user {
+interface User {
     _id: string | null;
     phutoUrl: string | null;
     name: string | null;
     uid: string | null;
     cardsID: any;
 }
-
-interface card {
+interface Card {
     _id: string;
     term: string;
     definition: string;
@@ -33,41 +33,44 @@ interface card {
     slot: number;
     uid: string;
 }
-
 class Learn extends Component<myProps, myState> {
     state = {
         index: 0,
     };
+
+    componentDidMount() {
+        const { user, getCardsToLearn } = this.props;
+        const isUserEmpty = Object.keys(user).length === 0;
+        if (!isUserEmpty) {
+            getCardsToLearn(user);
+        }
+    }
     getNextCard = () => {
         let currentCard = this.state.index;
         this.setState({
             index: ++currentCard,
         });
-        console.log('nextCard', currentCard);
     };
+
     componentDidUpdate(prevProps: myProps) {
-        console.log(this.props.user);
-        console.log(prevProps.user);
         if (this.props.user !== prevProps.user) {
             this.props.getCardsToLearn(this.props.user);
         }
     }
     render() {
         const { index } = this.state;
-        const { cards } = this.props;
+        const { cards, error } = this.props;
+        if (error) {
+            return <h1>{error}</h1>;
+        }
         if (cards === null) {
             return <Loading />;
         }
-
         if (cards[index]) {
             return (
                 <div>
                     <ul>
-                        <div>
-                            {cards[index] && cards[index].nextAppearance < Date.now() && (
-                                <Board card={cards[index]} getNextCard={this.getNextCard} />
-                            )}
-                        </div>
+                        <div>{cards[index] && <Board card={cards[index]} getNextCard={this.getNextCard} />}</div>
                     </ul>
                 </div>
             );
@@ -76,9 +79,14 @@ class Learn extends Component<myProps, myState> {
         }
     }
 }
-const mapStateToProps = (state: { cards: any; user: any }) => ({
-    cards: state.cards.cards,
-    user: state.user,
-});
+const mapStateToProps = (state: { cards: any; user: any }) => {
+    const cards = state.cards.cards;
+    const filteredCards = cards ? cards.filter((card: Card) => !!card && card.nextAppearance < Date.now()) : cards;
+    return {
+        cards: filteredCards,
+        error: state.cards.error,
+        user: state.user.user,
+    };
+};
 
 export default connect(mapStateToProps, { getCardsToLearn })(Learn);

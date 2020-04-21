@@ -7,7 +7,7 @@ import { getCards } from '../../actions/cardsAction';
 
 interface myProps {
     cards: [card] | null;
-    user: [user];
+    user: User;
     getCards: Function;
 }
 
@@ -23,7 +23,7 @@ interface card {
     uid: string;
 }
 
-interface user {
+interface User {
     _id: string | null;
     phutoUrl: string | null;
     name: string | null;
@@ -33,8 +33,11 @@ interface user {
 
 class Learn extends Component<myProps> {
     componentDidMount() {
-        console.log('cards componentDidMount :', this.props.user, this.props.cards);
-        this.props.getCards(this.props.user);
+        const { user, getCards } = this.props;
+        const isUserEmpty = Object.keys(user).length === 0;
+        if (!isUserEmpty) {
+            getCards(user);
+        }
     }
 
     render() {
@@ -59,9 +62,14 @@ class Learn extends Component<myProps> {
         );
     }
 }
-const mapStateToProps = (state: { cards: any; user: any }) => ({
-    cards: state.cards.cards,
-    user: state.user,
-});
+const mapStateToProps = (state: { cards: any; user: any }) => {
+    const cards = state.cards.cards;
+    const filteredCards = cards ? cards.filter((card: Card) => !!card) : cards;
+    return {
+        cards: filteredCards,
+        error: state.cards.error,
+        user: state.user.user,
+    };
+};
 
 export default connect(mapStateToProps, { getCards })(Learn);
