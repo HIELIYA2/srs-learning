@@ -23,13 +23,21 @@ export const getCards = user => async dispatch => {
     const CARD_URL = getUrl('cards', user.user._id);
     console.log('getCards', user, CARD_URL);
     await fetch(CARD_URL)
-        .then(res => res.json())
+        .then(res => (res.json() || res))
         .then(data =>
             dispatch({
                 type: GET_CARDS,
                 payload: data,
+                error: null,
             }),
-        );
+        )
+        .catch(error => {
+            dispatch({
+                type: GET_CARDS,
+                payload: [],
+                error: 'sorry there was an error',
+            })
+        });
 };
 
 export const getCardsToLearn = user => async dispatch => {

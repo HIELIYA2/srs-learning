@@ -7,6 +7,7 @@ import { getCards } from '../../actions/cardsAction';
 
 interface myProps {
     cards: [card] | null;
+    error: string | null;
     user: [user];
     getCards: Function;
 }
@@ -39,7 +40,11 @@ class Learn extends Component<myProps> {
 
     render() {
         let currentIndex = 1;
-        const { cards } = this.props;
+        const { cards, error } = this.props;
+
+        if (error) {
+          return <h1>{error}</h1>;
+        }
 
         if (cards === null) {
             return <Loading />;
@@ -61,7 +66,9 @@ class Learn extends Component<myProps> {
     }
 }
 const mapStateToProps = (state: { cards: any; user: any }) => ({
+    // TODO: why is it nested in cards.cards / cards.error?
     cards: state.cards.cards,
+    error: state.cards.error,
     user: state.user,
 });
 

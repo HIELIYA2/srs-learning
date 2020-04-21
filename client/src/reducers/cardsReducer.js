@@ -16,7 +16,8 @@ export default (state = initialState, action) => {
         case GET_CARDS:
             return {
                 ...state,
-                cards: action.payload,
+                cards: action.payload || [],
+                error: action.error,
             };
         case GET_CARDS_LEARN:
             return {
