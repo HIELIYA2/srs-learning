@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getCardsToLearn } from '../../actions/cardsAction';
 
 interface myProps {
-    cards: [card];
+    cards: [card] | null;
     user: [user];
     getCardsToLearn: Function;
 }
@@ -55,27 +55,25 @@ class Learn extends Component<myProps, myState> {
     render() {
         const { index } = this.state;
         const { cards } = this.props;
-        const filtered = cards.filter(function(e) {
-            return e;
-        });
-        if (filtered[index]) {
+
+        if (cards === null) {
+            return <Loading />;
+        }
+
+        if (cards[index]) {
             return (
                 <div>
                     <ul>
                         <div>
-                            {filtered[index] && filtered[index].nextAppearance < Date.now() && (
-                                <Board card={filtered[index]} getNextCard={this.getNextCard} />
+                            {cards[index] && cards[index].nextAppearance < Date.now() && (
+                                <Board card={cards[index]} getNextCard={this.getNextCard} />
                             )}
                         </div>
                     </ul>
                 </div>
             );
         } else {
-            if (filtered) {
-                return <h1>There are no terms to learn today</h1>;
-            } else {
-                return <Loading />;
-            }
+            return <h1>There are no terms to learn today</h1>;
         }
     }
 }

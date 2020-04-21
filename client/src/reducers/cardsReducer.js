@@ -2,7 +2,7 @@ import { GET_CARDS, GET_CARDS_LEARN, ADD_CARD, DELETE_CARD, UPDATE_CARD } from '
 import cardService from '../services/cardService';
 
 const initialState = {
-    cards: [],
+    cards: null,
     card: {},
 };
 
