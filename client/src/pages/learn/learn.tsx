@@ -48,6 +48,8 @@ class Learn extends Component<myProps, myState> {
         console.log('nextCard', currentCard);
     };
     componentDidUpdate(prevProps: myProps) {
+        console.log(this.props.user);
+        console.log(prevProps.user);
         if (this.props.user !== prevProps.user) {
             this.props.getCardsToLearn(this.props.user);
         }

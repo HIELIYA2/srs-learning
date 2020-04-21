@@ -2,7 +2,7 @@
     "name": "borsood",
     "version": "0.1.0",
     "private": true,
-    "proxy": "http://localhost:3000",
+    "proxy": "http://localhost:3001",
     "dependencies": {
         "@types/react": "^16.8.18",
         "@types/react-dom": "16.8.4",
