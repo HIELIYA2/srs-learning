@@ -34,7 +34,7 @@ function updateCard(card: { _id: string }) {
 }
 
 function getUrl(entityName: string) {
-    return process.env.NODE_ENV !== 'development' ? `/api/${entityName}` : `//localhost:3001/api/${entityName}`;
+    return process.env.NODE_ENV !== 'development' ? `/api/${entityName}` : `//localhost:3000/api/${entityName}`;
 }
 
 export default {

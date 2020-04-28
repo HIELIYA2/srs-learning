@@ -64,5 +64,5 @@ export const getCardsToLearn = user => async dispatch => {
 function getUrl(entityName, id) {
     return process.env.NODE_ENV !== 'development'
         ? `/api/users/${entityName}/${id}`
-        : `//localhost:3001/api/users/${entityName}/${id}`;
+        : `//localhost:3000/api/users/${entityName}/${id}`;
 }
