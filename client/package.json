@@ -13,7 +13,7 @@
         "eslint-plugin-prettier": "^3.1.2",
         "eslint-plugin-react": "^7.16.0",
         "firebase": "^7.6.1",
-        "node-sass": "^4.13.1",
+        "node-sass": "^7.0.0",
         "react": "^16.8.6",
         "react-components": "github:HIELIYA2/react-components#master",
         "react-dom": "^16.8.6",
